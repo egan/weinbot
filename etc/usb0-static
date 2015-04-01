@@ -1,0 +1,6 @@
+Description='IP over USB'
+Interface=usb0
+Connection=ethernet
+IP=static
+Address=192.168.10.42/24
+Gateway=192.168.10.3

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+##
+# iptablescfg -- configure local host iptables for BBB Internet access
+#
+# usage       -- iptablescfg
+#
+# notes       -- requires iptables, DNS resolv config'd on client
+#
+# written     -- 01 April 2015 by Egan McComb
+##
+
+##----MAIN----##
+if [[ $EUID != "0" ]]
+then
+	echo "Error: Must be root"
+	exit 1
+fi
+
+# Append masquerade target rule operating on NAT table to post routing chain.
+iptables -A POSTROUTING -t nat -j MASQUERADE
+
+# Enable IP forwarding.
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+exit 0

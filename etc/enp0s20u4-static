@@ -1,0 +1,5 @@
+Description='IP over USB'
+Interface=enp0s20u4
+Connection=ethernet
+IP=static
+Address=192.168.10.3/24
