@@ -1,0 +1,20 @@
+# Initial Operating System Configuration
+The BBB single board computer (SBC) runs Arch Linux ARM (ALARM) off the micro SD card.
+
+## Installation
+The OS and boot loader can be installed to the SD card from any computer following the [instructions](http://archlinuxarm.org/platforms/armv7/ti/beaglebone-black).
+Note that the tape archive extraction of the boot loader may fail due to ownership issues on the FAT partition.
+This can be worked around by adding the `--no-same-owner` flag to `tar`.
+
+The root password was set, the hostname was changed to `weinbot` in `/etc/hostname` and `/etc/hosts`, and the appropriate timezone was configured with:
+
+	# ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
+Other than this, the basic configuration of the default image suffices.
+For a list of installed software, refer to the [package list](pkg.txt).
+
+## User Structure
+Two users were added to the group `users`, `dev` and `wtf` (for Wash the Floor¡).
+The `dev` user is the development and administration user, having `sudo` access as a member of the `wheel` group (enabled with `visudo`).
+The `wtf` user is unprivileged and is the user in which the robot operating system and control software will be run.
+Similar to `root`, it should not be accessed directly.
