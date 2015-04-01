@@ -18,3 +18,8 @@ Two users were added to the group `users`, `dev` and `wtf` (for Wash the Floor¡
 The `dev` user is the development and administration user, having `sudo` access as a member of the `wheel` group (enabled with `visudo`).
 The `wtf` user is unprivileged and is the user in which the robot operating system and control software will be run.
 Similar to `root`, it should not be accessed directly.
+
+## User Configuration
+User configuration files for the `dev` account are obtained from <https://github.com/egan/dotfiles>.
+Some useful utilities are included from <https://github.com/egan/scripts>.
+Refer to those resources for documentation.
