@@ -1,15 +1,40 @@
 # Official:
-sudo:            run programs as other users
-tmux:            terminal multiplexer
-vim:             feature-rich editor
-ntp:             network time synchonization
-git:             version control
-bash-completion: convenient command completions
-mlocate:         file database and search
-moreutils:       useful extension to coreutils
-wget:            web downloader
-python:          python
-base-devel:      base development tools inc. gcc
+dosfstools:          utilities for DOS filesystems
+sudo:                run programs as other users
+tmux:                terminal multiplexer
+vim:                 feature-rich editor
+ntp:                 network time synchonization
+git:                 version control
+bash-completion:     convenient command completions
+mlocate:             file database and search
+moreutils:           useful extension to coreutils
+wget:                web downloader
+python:              python
+base-devel:          base development tools inc. gcc
+ctags:               tag generator for C files
+gdb:                 debugger
+strace:              stack tracer
+htop:                process resource monitor
+iftop:               network traffic monitor
+iotop:               storage traffic monitor
+powertop:            power usage monitor
+bwm-ng:              network usage monitor
+procinfo-ng:         utilities for /proc filesystem
+jshon:               json parser
+lsof:                list open files
+inotify-tools:       interface to inotify
+nmap:                network mapper
+iptraf-ng:           ip traffic monitor
+tcpdump:             tcp packet monitor
+cython:              C extensions for python
+ipython:             interactive python console
+python-pip:          package manager
+python-bottleneck:   fast versions of scipy modules
+python-numpy:        matrix library
+python-pillow:       imaging library
+python-scikit-learn: machine learning library
+python-scipy:        scipy misc library
+python-sympy:        symbolic manipulation library
 
 # AUR:
 python3-threaded_servers: dependency for quickserve
