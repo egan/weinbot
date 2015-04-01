@@ -1,0 +1,16 @@
+# Official:
+sudo:            run programs as other users
+tmux:            terminal multiplexer
+vim:             feature-rich editor
+ntp:             network time synchonization
+git:             version control
+bash-completion: convenient command completions
+mlocate:         file database and search
+moreutils:       useful extension to coreutils
+wget:            web downloader
+python:          python
+base-devel:      base development tools inc. gcc
+
+# AUR:
+python3-threaded_servers: dependency for quickserve
+quickserve:               ad-hoc web hosting (python)
