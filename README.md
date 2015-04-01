@@ -6,7 +6,7 @@ In this way, our device will serve as a good foundation for potential further ro
 
 # Documentation
 ## Administration and Development
-+ [Initial Operating System Configuration](docs/os_config.md)
-+ [Connecting to the BBB from Local Host](docs/connecting.md)
+### [Initial Operating System Configuration](docs/os_config.md)
+### [Connecting to the BBB from Local Host](docs/connecting.md)
 
 ## Operation and Demonstration
