@@ -9,8 +9,10 @@ bash-completion:     convenient command completions
 mlocate:             file database and search
 moreutils:           useful extension to coreutils
 wget:                web downloader
+bc:                  calculator
 python:              python
 base-devel:          base development tools inc. gcc
+i2c-tools:           utilities for I²C
 ctags:               tag generator for C files
 gdb:                 debugger
 strace:              stack tracer
