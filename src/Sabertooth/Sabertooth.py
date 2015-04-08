@@ -128,6 +128,7 @@ class Sabertooth():
         # Send drive commands.
         sentBytes = self.sendCommand(self.cmds[dir_left + "_left"], speed_left)
         sentBytes += self.sendCommand(self.cmds[dir_right + "_right"], speed_right)
+        return sentBytes
 
     def mixedDrive(self, direction="fwd", speed=0):
         """
@@ -152,6 +153,7 @@ class Sabertooth():
         logging.debug("mixedDrive: %s %d" %(direction + "_mixed", speed))
 
         sentBytes = self.sendCommand(self.cmds[direction + "_mixed"], speed)
+        return sentBytes
 
     def stop(self):
         """
