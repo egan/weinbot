@@ -1,5 +1,6 @@
 # Pinout Configuration
 Because many of the exposed pins on the BBB are muxed, some configuration is required to enable and configure the appropriate I/O.
+To read general documentation on the SysFS interface to Linux GPIO, refer [here](gpio-sysfs.txt).
 
 ## UARTs
 By default only UART0 (exposed on J1) is exposed.
