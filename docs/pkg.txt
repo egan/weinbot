@@ -34,6 +34,7 @@ python2-pip:          package manager
 python2-bottleneck:   fast versions of scipy modules
 python2-numpy:        matrix library
 python2-pillow:       imaging library
+python2-pyserial:     serial communication library
 python2-scikit-learn: machine learning library
 python2-scipy:        scipy misc library
 python2-sympy:        symbolic manipulation library
@@ -41,3 +42,6 @@ python2-sympy:        symbolic manipulation library
 # AUR:
 python3-threaded_servers: dependency for quickserve
 quickserve:               ad-hoc web hosting (python)
+
+# PIP:
+Adafruit_BBIO:            BBB IO library (Python2)
