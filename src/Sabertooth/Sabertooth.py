@@ -49,7 +49,6 @@ class Sabertooth():
         self.address = address
 
         if (self.UART == None) or (self.port == None) or (self.address < 128 or self.address > 135):
-            raise("Invalid hardware parameters.")
             return None
 
         # Setup UART on BeagleBone (loads device tree overlay).
@@ -107,7 +106,6 @@ class Sabertooth():
         # Stupidity checks.
         validcmds = ["fwd", "rev"]
         if (dir_left not in validcmds) or (dir_right not in validcmds):
-            raise("Invalid motor command.")
             return -1
 
         if  speed_left < 0:
@@ -178,7 +176,6 @@ class Sabertooth():
         if (value > 0 and value < 81):
             sentBytes = self.sendCommand(self.cmds["ramp"], value)
         else:
-            raise("Invalid ramp value.")
             return -1
 
         return sentBytes
