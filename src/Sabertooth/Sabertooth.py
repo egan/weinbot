@@ -105,7 +105,8 @@ class Sabertooth():
 
         """
         # Stupidity checks.
-        if (direction in [dir_left, dir_right] not in ["fwd", "rev"]):
+        validcmds = ["fwd", "rev"]
+        if (dir_left not in validcmds) or (dir_right not in validcmds):
             raise("Invalid motor command.")
             return -1
 
@@ -138,7 +139,8 @@ class Sabertooth():
                 direction: fwd, rev, left, or right.
         """
         # Stupidity checks.
-        if  (direction not in ["fwd", "rev", "left", "right"]):
+        validcmds = ["fwd", "rev", "left", "right"]
+        if  (direction not in validcmds):
             return -1
 
         if  speed < 0:
