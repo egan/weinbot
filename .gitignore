@@ -1,3 +1,6 @@
 # Ignore editor files.
 **.swo
 **.swp
+
+# Ignore compiled Python bytecode.
+**.pyc
