@@ -1,0 +1,1 @@
+optargs=coherent_pool=1M capemgr.disable_partno=BB-BONELT-HDMI,BB-BONELT-HDMIN,BB-BONE-EMMC-2G capemgr.enable_partno=BB-UART4,BB-I2C1,BB-I2C2
