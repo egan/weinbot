@@ -23,3 +23,7 @@ Similar to `root`, it should not be accessed directly.
 User configuration files for the `dev` account are obtained from <https://github.com/egan/dotfiles>.
 Some useful utilities are included from <https://github.com/egan/scripts>.
 Refer to those resources for documentation.
+
+## Booting Straight to SD
+To facilitate unattended boot straight to SD (rather than internal eMMC), merely zero out the onboard boot partition with `dd`.
+**Note that this will destroy data on the referenced volume!**
