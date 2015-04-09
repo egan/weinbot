@@ -61,6 +61,7 @@ Upon bringing this profile up, you may connect to the BBB over SSH with:
 	$ ssh dev@192.168.10.42
 
 which is adequate for most administrative tasks.
+Note that whenever the BBB is reset, the network profile needs to be restarted.
 #### Internet Access
 Should Internet access on the BBB be required, network address translation and packet forwarding on the local host needs to be configured.
 This can be accomplished running the `iptablescfg` script given [here](../bin/iptablescfg) as root.
