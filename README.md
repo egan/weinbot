@@ -9,7 +9,7 @@ In this way, our device will serve as a good foundation for potential further ro
 ### [Initial Operating System Configuration](docs/os_config.md)
 ### [Connecting to the BBB from Local Host](docs/connecting.md)
 ### [User Environment Configuration](docs/user_config.md)
-### [Hardware Configuration](docs/pinout_config.md)
+### [Hardware Configuration](docs/hardware_config.md)
 
 ## Hardware
 ### [BeagleBone Black Reference Manual](docs/BBB_SRM.pdf)
