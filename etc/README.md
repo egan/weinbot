@@ -4,6 +4,7 @@ The files `enp0s20u4-static` and `usb0-static` are example `netctl` profiles.
 Please see the [documentation](../docs/connecting.md) for more information.
 
 ## Resolvconf Configuration
+**Do not use this file as it currently breaks the network profiles.**
 The file `resolvconf.conf` is an example `resolvconf` configuration to manually specify Google's DNS so that name resolution is available reliably.
 
 ## SSH Client Profile
