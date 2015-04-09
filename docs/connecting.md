@@ -65,3 +65,10 @@ which is adequate for most administrative tasks.
 Should Internet access on the BBB be required, network address translation and packet forwarding on the local host needs to be configured.
 This can be accomplished running the `iptablescfg` script given [here](../bin/iptablescfg) as root.
 The BBB should now have Internet access via the local host's connection.
+
+## Troubleshooting
+If `netctl` profiles fail to come up, check `journalctl -xe` and `systemctl status netctl@profile_name` as root for error messages.
+One problem encountered was `RTNETLINK answers: File exists` due to a faulty `resolvconf` configuration.
+In such a situation, the interface affected can be fixed with e.g.:
+
+	# ip addr flush dev usb0
