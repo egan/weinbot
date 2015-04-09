@@ -13,6 +13,7 @@ bc:                   calculator
 python:               python
 base-devel:           base development tools inc. gcc
 i2c-tools:            utilities for I²C
+ifplugd:              dynamic network interface daemon
 ctags:                tag generator for C files
 gdb:                  debugger
 strace:               stack tracer
