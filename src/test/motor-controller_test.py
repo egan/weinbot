@@ -10,12 +10,12 @@ from Sabertooth.Sabertooth import Sabertooth as Sabertooth
 #  5. Connect the motor leads the to M*{A,B} terminals.
 # COM:
 #  1. Connect any DGND to PSU ground.
-#  2. Connect P9_24 to S1 terminal.
+#  2. Connect P9_13 to S1 terminal.
 ##
 
-# UART1 must be enabled in uEnv.txt.
-UART = "UART1"
-TTY = "ttyO1"
+# UART4 must be enabled in uEnv.txt.
+UART = "UART4"
+TTY = "ttyO4"
 
 # Instantiate motor driver object with correct hardware information.
 saber = Sabertooth(UART, TTY)
