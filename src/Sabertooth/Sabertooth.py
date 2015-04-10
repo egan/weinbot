@@ -13,7 +13,6 @@
 ##
 
 import serial, logging
-import Adafruit_BBIO.UART as UART
 
 class Sabertooth():
     """
@@ -36,23 +35,18 @@ class Sabertooth():
             "ramp": 0x10
             }
 
-    def __init__(self, BBB_UART="UART1", port="/dev/ttyO1", address=128):
+    def __init__(self, port="/dev/ttyO1", address=128):
         """
-            Beagle_UART: BBB UART to use (must be enabled in uEnv.txt).
             port:        Teletypewriter device to connect to.
             address:     Address of controller to send commands to
                          (set by DIP switches 3-6).
 
         """
-        self.UART = BBB_UART
         self.port = port
         self.address = address
 
-        if (self.UART == None) or (self.port == None) or (self.address < 128 or self.address > 135):
+        if (self.port == None) or (self.address < 128 or self.address > 135):
             return None
-
-        # Setup UART on BeagleBone (loads device tree overlay).
-        UART.setup(self.UART)
 
         # Initialize serial port.
         self.saber = serial.Serial()
