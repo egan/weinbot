@@ -15,5 +15,6 @@ In this way, our device will serve as a good foundation for potential further ro
 ### [BeagleBone Black Reference Manual](docs/BBB_SRM.pdf)
 ### [BeagleBone Black Pin Maps](docs/pinmaps.md)
 ### [Sabertooth Motor Driver Reference](docs/Sabertooth2x60.pdf)
+### [WEINBot Pin Assignments](docs/pinout.md)
 
 ## Operation and Demonstration
