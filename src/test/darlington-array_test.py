@@ -23,7 +23,7 @@ import time
 #  3. Connect coil + to signal branch.
 #
 # Loads:
-#  1. Connect relay NO pin to LED via appropriate resistor (e.g. 1kÎ).
+#  1. Connect relay NO pin to LED via appropriate resistor (e.g. 1K).
 ##
 
 # Setup GPIO pins.
