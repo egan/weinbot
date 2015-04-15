@@ -71,7 +71,10 @@ class Drive():
         elif speed > self.speed_limit:
             speed = self.speed_limit
 
-        # Straight driving.
+        min_radius = -self.track/2.0
+        if radius < min_radius:
+            radius = min_radius
+
         if turn == "no":
             # Calculate speed percentage.
             speed = int(float(speed/self.speed_max*100))
@@ -79,3 +82,10 @@ class Drive():
             logging.debug("drive (straight): %s %d" %(direction, speed))
             # Command motor driver.
             self.saber.mixedDrive(direction, speed)
+
+    def stop(self):
+        """
+            stop: Stops all drive using drive.
+
+        """
+        self.drive("fwd", 0)
