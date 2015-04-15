@@ -154,8 +154,8 @@ class Sabertooth():
             speed_yaw = 100
 
         # Calculate speed command from percentage.
-        speed_surge = int((float(speed)*127)//100)
-        speed_yaw = int((float(speed)*127)//100)
+        speed_surge = int((float(speed_surge)*127)//100)
+        speed_yaw = int((float(speed_yaw)*127)//100)
 
         logging.debug("mixedDrive: %s %d %s %d" %(dir_surge + "_mixed", speed_surge, dir_yaw + "_mixed", speed_yaw))
 
