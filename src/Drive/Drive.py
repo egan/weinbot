@@ -73,6 +73,6 @@ class Drive():
         # Straight driving.
         if turn == "no":
             # Calculate speed percentage.
-            speed = int(flow(speed//speed_max*100))
+            speed = int(float(speed//speed_max*100))
             # Command motor driver.
             self.saber.mixedDrive(direction, speed)
