@@ -33,7 +33,7 @@ class Drive():
             return None
 
         # Instantiate motor driver object (com. over UART4).
-        TTY = "tty04"
+        TTY = "ttyO4"
         self.saber = Sabertooth(TTY)
         if (self.saber == None):
             return None
