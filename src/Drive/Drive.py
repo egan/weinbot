@@ -7,6 +7,7 @@
 ##
 
 from Sabertooth.Sabertooth import Sabertooth as Sabertooth
+import logging
 
 class Drive():
     """
@@ -73,6 +74,8 @@ class Drive():
         # Straight driving.
         if turn == "no":
             # Calculate speed percentage.
-            speed = int(float(speed//speed_max*100))
+            speed = int(float(speed/self.speed_max*100))
+            # Debug logging.
+            logging.debug("drive (straight): %s %d" %(direction, speed))
             # Command motor driver.
             self.saber.mixedDrive(direction, speed)
