@@ -124,38 +124,52 @@ class Sabertooth():
         sentBytes += self.sendCommand(self.cmds[dir_right + "_right"], speed_right)
         return sentBytes
 
-    def mixedDrive(self, direction="fwd", speed=0):
+    def mixedDrive(self, dir_surge="fwd", speed_surge=0, dir_yaw="left", speed_yaw=0):
         """
-            mixedDrive: Mixed drive (in-place turning and linear control).
+            mixedDrive: Mixed drive (additive differential drive).
                         Calls sendCommand, returning bytes written.
 
-                direction: fwd, rev, left, or right.
+                dir_surge:   fwd or rev
+                speed_surge: 0-100% (surge)
+                dir_yaw:     left or right (additive)
+                speed_yaw:   0-100% (yaw)
         """
         # Stupidity checks.
-        validcmds = ["fwd", "rev", "left", "right"]
-        if  (direction not in validcmds):
+        validcmds = ["fwd", "rev"]
+        if  (dir_surge not in validcmds):
             return -1
 
-        if  speed < 0:
-            speed = 0
-        elif speed > 100:
-            speed = 100
+        validcmds = ["left", "right"]
+        if (dir_yaw not in validcmds):
+            return -1
+
+        if  speed_surge < 0:
+            speed_surge = 0
+        elif speed_surge > 100:
+            speed_surge = 100
+
+        if  speed_yaw < 0:
+            speed_yaw = 0
+        elif speed_yaw > 100:
+            speed_yaw = 100
 
         # Calculate speed command from percentage.
-        speed = int((float(speed)*127)//100)
+        speed_surge = int((float(speed)*127)//100)
+        speed_yaw = int((float(speed)*127)//100)
 
-        logging.debug("mixedDrive: %s %d" %(direction + "_mixed", speed))
+        logging.debug("mixedDrive: %s %d %s %d" %(dir_surge + "_mixed", speed_surge, dir_yaw + "_mixed", speed_yaw))
 
-        sentBytes = self.sendCommand(self.cmds[direction + "_mixed"], speed)
+        sentBytes = self.sendCommand(self.cmds[dir_surge + "_mixed"], speed_surge)
+        sentBytes += self.sendCommand(self.cmds[dir_yaw + "_mixed"], speed_yaw)
         return sentBytes
 
     def stop(self):
         """
-            stop: Stops both motors using mixedDrive, returning bytes written.
+            stop: Stops both motors using independentDrive, returning bytes written.
 
         """
         sentBytes = 0
-        sentBytes = self.mixedDrive("fwd", 0)
+        sentBytes = self.independentDrive("fwd", 0, "fwd", 0)
         return sentBytes
 
     def setRamp(self, value):
