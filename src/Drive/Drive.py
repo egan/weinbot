@@ -54,7 +54,7 @@ class Drive():
                            turn, CW or CCW for right turn
                 speed:     tangential speed (m/s)
                 turn:      left, no, or right
-                radius:    radius of turning with respect inner wheel (m)
+                radius:    radius of turning with respect to axle center
 
         """
         # Stupidity checks.
@@ -71,17 +71,53 @@ class Drive():
         elif speed > self.speed_limit:
             speed = self.speed_limit
 
-        min_radius = -self.track/2.0
-        if radius < min_radius:
-            radius = min_radius
+        if radius < 0:
+            radius = 0
 
+        # Drive algorithm.
+        # XXX: Check for saturation in turns, add speed limit for turns with
+        # internal radii.
         if turn == "no":
             # Calculate speed percentage.
             speed = int(float(speed/self.speed_max*100))
             # Debug logging.
             logging.debug("drive (straight): %s %d" %(direction, speed))
             # Command motor driver.
-            self.saber.mixedDrive(direction, speed)
+            self.saber.independentDrive(direction, speed, direction, speed)
+        else:
+            # Wheel speeds assuming left turn.
+            if radius == 0:
+                speed_l = -speed
+                speed_r = speed
+            else:
+                speed_l = speed*(2*radius - self.track)/(2*radius)
+                speed_r = speed*(2*radius + self.track)/(2*radius)
+            # Swap if turning right.
+            if turn == "right":
+                speed_l, speed_r = speed_r, speed_l
+
+            # Determine directions assuming driving forward.
+            if speed_l < 0:
+                dir_l = "rev"
+            else:
+                dir_l = "fwd"
+
+            if speed_r < 0:
+                dir_r = "rev"
+            else:
+                dir_r = "fwd"
+            # Swap if driving reverse.
+            if direction == "rev":
+                dir_l, dir_r = dir_r, dir_l
+
+            # Calculate speed percentages.
+            speed_l = abs(int(float(speed_l/self.speed_max*100)))
+            speed_r = abs(int(float(speed_r/self.speed_max*100)))
+            # Debug logging.
+            logging.debug("drive (turn): %s %d %s %d" %(dir_l, speed_l, dir_r, speed_r))
+            # Command motor driver.
+            self.saber.independentDrive(dir_l, speed_l, dir_r, speed_r)
+
 
     def stop(self):
         """
