@@ -33,12 +33,12 @@ class Shutoff():
         self.shutdown()
         return
 
-    def shutdown(self):
+    def shutdown(self, channel):
         """
             shutdown: Call stop() methods for shutoff objects.
 
         """
-        logging.debug("shutoff: shutdown interrupt received")
+        logging.debug("shutoff: shutdown interrupt received channel %d" %(channel))
         for obj in self.objects:
             obj.stop()
 
