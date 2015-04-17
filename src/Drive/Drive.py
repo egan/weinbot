@@ -75,11 +75,11 @@ class Drive():
 
         # Drive algorithm.
         if turn == "no":
-            # Check speed limit.
+            # Check speed limit. Ignore if malformed.
             if speed < 0:
-                speed = 0
+                return -1
             elif speed > self.speed_limit[0]:
-                speed = self.speed_limit[0]
+                return -1
             # Calculate speed percentage.
             speed = int(speed/self.speed_max*100)
             # Debug logging.
@@ -90,9 +90,9 @@ class Drive():
             if radius >= self.rcrit:
                 # Check speed limit.
                 if speed < 0:
-                    speed = 0
+                    return -1
                 elif speed > self.speed_limit[0]:
-                    speed = self.speed_limit[0]
+                    return -1
                 # Wheel speeds assuming left turn.
                 speed_l = speed*(2*radius - self.track)/(2*radius)
                 speed_r = speed*(2*radius + self.track)/(2*radius)
@@ -115,9 +115,9 @@ class Drive():
             else:
                 # Check speed limit.
                 if speed < 0:
-                    speed = 0
+                    return -1
                 elif speed > self.speed_limit[1]:
-                    speed = self.speed_limit[1]
+                    return -1
                 # Convert speed to rad/s.
                 speed = math.pi*speed/180
                 # Wheel speeds assuming left turn.
