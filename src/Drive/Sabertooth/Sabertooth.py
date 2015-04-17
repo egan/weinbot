@@ -12,6 +12,7 @@
 #
 ##
 
+from __future__ import division
 import serial, logging
 
 class Sabertooth():
@@ -113,8 +114,8 @@ class Sabertooth():
             speed_right = 100
 
         # Calculate speed commands from percentages.
-        speed_left = int((float(speed_left)*127)//100)
-        speed_right = int((float(speed_right)*127)//100)
+        speed_left = int(speed_left*127/100)
+        speed_right = int(speed_right*127/100)
 
         # Debug logging.
         logging.debug("independentDrive: %s %d %s %d" %(dir_left + "_left", speed_left, dir_right + "_right", speed_right))
@@ -154,8 +155,8 @@ class Sabertooth():
             speed_yaw = 100
 
         # Calculate speed command from percentage.
-        speed_surge = int((float(speed_surge)*127)//100)
-        speed_yaw = int((float(speed_yaw)*127)//100)
+        speed_surge = int(speed_surge*127/100)
+        speed_yaw = int(speed_yaw*127/100)
 
         logging.debug("mixedDrive: %s %d %s %d" %(dir_surge + "_mixed", speed_surge, dir_yaw + "_mixed", speed_yaw))
 

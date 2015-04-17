@@ -81,7 +81,7 @@ class Drive():
             elif speed > self.speed_limit[0]:
                 speed = self.speed_limit[0]
             # Calculate speed percentage.
-            speed = int(float(speed/self.speed_max*100))
+            speed = int(speed/self.speed_max*100)
             # Debug logging.
             logging.debug("drive (straight): %s %d" %(direction, speed))
             # Command motor driver.
@@ -106,8 +106,8 @@ class Drive():
                 if turn == "right":
                     speed_l, speed_r = speed_r, speed_l
                 # Calculate speed percentages.
-                speed_l = abs(int(float(speed_l/self.speed_max*100)))
-                speed_r = abs(int(float(speed_r/self.speed_max*100)))
+                speed_l = abs(int(speed_l/self.speed_max*100))
+                speed_r = abs(int(speed_r/self.speed_max*100))
                 # Debug logging.
                 logging.debug("drive (turn): %s %d %s %d" %(direction, speed_l, direction, speed_r))
                 # Command motor driver.
@@ -146,8 +146,8 @@ class Drive():
                 if direction == "rev":
                     dir_l, dir_r = dir_r, dir_l
                 # Calculate speed percentages.
-                speed_l = abs(int(float(speed_l/self.speed_max*100)))
-                speed_r = abs(int(float(speed_r/self.speed_max*100)))
+                speed_l = abs(int(speed_l/self.speed_max*100))
+                speed_r = abs(int(speed_r/self.speed_max*100))
                 # Debug logging.
                 logging.debug("drive (turn): %s %d %s %d" %(dir_l, speed_l, dir_r, speed_r))
                 # Command motor driver.
