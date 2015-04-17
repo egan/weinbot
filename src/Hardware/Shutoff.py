@@ -38,7 +38,7 @@ class Shutoff():
             shutdown: Call stop() methods for shutoff objects.
 
         """
-        logging.debug("shutoff: shutdown interrupt received channel %d" %(channel))
+        logging.debug("shutoff: shutdown interrupt received channel %s" %(channel))
         for obj in self.objects:
             obj.stop()
 
