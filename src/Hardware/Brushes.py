@@ -34,6 +34,7 @@ class Brushes():
             start: Start the brush motors.
 
         """
+        logging.debug("brushes: started")
         GPIO.output(self.pin, GPIO.HIGH)
 
     def stop(self):
@@ -41,4 +42,5 @@ class Brushes():
             stop: Stop the brush motors.
 
         """
+        logging.debug("brushes: stopped")
         GPIO.output(self.pin, GPIO.LOW)

@@ -34,6 +34,8 @@ class Alarm():
         for pin in pins_selector:
             GPIO.setup(pin, GPIO.OUT)
 
+        return None
+
     def __del__(self):
         self.stop()
         return
@@ -43,6 +45,7 @@ class Alarm():
             start: Start the alarm.
 
         """
+        logging.debug("alarm: started")
         GPIO.output(self.pin_enable, GPIO.HIGH)
 
     def setTone(self, tone):
@@ -89,6 +92,7 @@ class Alarm():
         else:
             GPIO.output(self.pins_selector[4], GPIO.LOW)
         # Resume alarm.
+        logging.debug("setTone: %d", %(tone))
         self.start()
 
     def stop(self):
@@ -96,4 +100,5 @@ class Alarm():
             stop: Stop the alarm.
 
         """
+        logging.debug("alarm: stopped")
         GPIO.output(self.pin_enable, GPIO.LOW)
