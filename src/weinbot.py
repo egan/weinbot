@@ -18,5 +18,6 @@ logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 # Initialization.
-drive = Drive()
+alarm = Alarm()
 brushes = Brushes()
+drive = Drive()
