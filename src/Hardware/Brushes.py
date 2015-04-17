@@ -7,6 +7,7 @@
 ##
 
 import Adafruit_BBIO.GPIO as GPIO
+import logging
 
 class Brushes():
     """
