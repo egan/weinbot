@@ -123,6 +123,12 @@ class Drive():
                 # Wheel speeds assuming left turn.
                 speed_l = speed*(2*radius - self.track)/2
                 speed_r = speed*(2*radius + self.track)/2
+                # Check for saturation.
+                if speed_r > self.speed_max:
+                    # Truncate speed to max attainable at turning radius.
+                    logging.debug("drive (turn): speed truncated due to saturation")
+                    speed_l = self.speed_max/speed_r*speed_l
+                    speed_r = self.speed_max
                 # Swap if turning right.
                 if turn == "right":
                     speed_l, speed_r = speed_r, speed_l
