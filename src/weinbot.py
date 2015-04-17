@@ -13,6 +13,10 @@ import logging
 from Drive.Drive import Drive as Drive
 from Hardware import *
 
+# Logging.
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
 # Initialization.
 drive = Drive()
 brushes = Brushes()
