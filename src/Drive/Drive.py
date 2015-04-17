@@ -6,6 +6,7 @@
 #
 ##
 
+from __future__ import division
 from Sabertooth.Sabertooth import Sabertooth as Sabertooth
 import logging
 import math
