@@ -92,7 +92,7 @@ class Alarm():
         else:
             GPIO.output(self.pins_selector[4], GPIO.LOW)
         # Resume alarm.
-        logging.debug("setTone: %d", %(tone))
+        logging.debug("setTone: %d" %(tone))
         self.start()
 
     def stop(self):
