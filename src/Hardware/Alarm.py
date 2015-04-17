@@ -17,6 +17,7 @@ class Alarm():
     """
     # Alarm tone aliases. See page 5 of the documentation for a list of tones.
     aliases = {
+            "slow": 3
             }
 
     def __init__(self, pin_enable="P8_26", pins_selector=("P8_21", "P8_22", "P8_23", "P8_24", "P8_25")):
@@ -52,8 +53,8 @@ class Alarm():
 
         """
         # Determine tone number (decimal).
-        if tone in aliases:
-            tone = aliases[tone]
+        if tone in self.aliases:
+            tone = self.aliases[tone]
         elif tone in range(1, 33):
             tone -= 1
         else:
@@ -64,29 +65,29 @@ class Alarm():
         self.stop()
         # Write tone selector bits.
         if (tone & 0x1):
-            GPIO.output(pins_selector[0], GPIO.HIGH)
+            GPIO.output(self.pins_selector[0], GPIO.HIGH)
         else:
-            GPIO.output(pins_selector[0], GPIO.LOW)
+            GPIO.output(self.pins_selector[0], GPIO.LOW)
 
         if (tone & 0x2):
-            GPIO.output(pins_selector[1], GPIO.HIGH)
+            GPIO.output(self.pins_selector[1], GPIO.HIGH)
         else:
-            GPIO.output(pins_selector[1], GPIO.LOW)
+            GPIO.output(self.pins_selector[1], GPIO.LOW)
 
-        if ((tone & 0x4):
-            GPIO.output(pins_selector[2], GPIO.HIGH)
+        if (tone & 0x4):
+            GPIO.output(self.pins_selector[2], GPIO.HIGH)
         else:
-            GPIO.output(pins_selector[2], GPIO.LOW)
+            GPIO.output(self.pins_selector[2], GPIO.LOW)
 
         if (tone & 0x8):
-            GPIO.output(pins_selector[3], GPIO.HIGH)
+            GPIO.output(self.pins_selector[3], GPIO.HIGH)
         else:
-            GPIO.output(pins_selector[3], GPIO.LOW)
+            GPIO.output(self.pins_selector[3], GPIO.LOW)
 
         if (tone & 0x10):
-            GPIO.output(pins_selector[4], GPIO.HIGH)
+            GPIO.output(self.pins_selector[4], GPIO.HIGH)
         else:
-            GPIO.output(pins_selector[4], GPIO.LOW)
+            GPIO.output(self.pins_selector[4], GPIO.LOW)
         # Resume alarm.
         self.start()
 
