@@ -14,7 +14,9 @@ import math
 class Drive():
     """
         Drive: A class that abstracts Sabertooth to useful differential drive
-               commands.
+               commands. This class is not meant to be sufficient for
+               controlled operation of a vehicle. An additional abstraction
+               layer to take vehicle dynamics into account is recommended.
     """
 
     def __init__(self, speed_max=1.654, speed_limit=(1, 90), track=1, rcrit=1, ramp=15):
@@ -23,6 +25,7 @@ class Drive():
             speed_limit: Tuple: speed limit for forward/reverse drive
                          operations (m/s), speed limit for tight turns (deg/s).
             track:       Track width for the drive wheels (m).
+            rcrit:       Critical radius inside which speeds measured angularly.
             ramp:        Sabertooth ramp identifier.
 
         """
@@ -52,7 +55,9 @@ class Drive():
     def drive(self, direction="fwd", speed=0, turn="no", radius=0.25):
         """
             drive: Drive in specified direction at specified speed with
-                   specified radius of turning.
+                   specified radius of turning. Note that it is recommended
+                   that the control layer bring the vehicle to a stop before
+                   allowing the radius of turning to cross the critical value.
 
                 direction: fwd or rev. Corresponds to CCW or CW for a left
                            turn, CW or CCW for right turn
