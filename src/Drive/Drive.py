@@ -126,9 +126,6 @@ class Drive():
                 # Swap if turning right.
                 if turn == "right":
                     speed_l, speed_r = speed_r, speed_l
-                # Calculate speed percentages.
-                speed_l = abs(int(float(speed_l/self.speed_max*100)))
-                speed_r = abs(int(float(speed_r/self.speed_max*100)))
                 # Determine directions assuming driving forward.
                 if speed_l < 0:
                     dir_l = "rev"
@@ -142,6 +139,9 @@ class Drive():
                 # Swap if driving reverse.
                 if direction == "rev":
                     dir_l, dir_r = dir_r, dir_l
+                # Calculate speed percentages.
+                speed_l = abs(int(float(speed_l/self.speed_max*100)))
+                speed_r = abs(int(float(speed_r/self.speed_max*100)))
                 # Debug logging.
                 logging.debug("drive (turn): %s %d %s %d" %(dir_l, speed_l, dir_r, speed_r))
                 # Command motor driver.
