@@ -25,6 +25,7 @@ class Shutoff():
         self.objects = objects
 
         # Set up GPIO interrupt on rising edge.
+        GPIO.setup(pin, GPIO.IN)
         GPIO.add_event_detect(pin, GPIO.RISING, callback=self.shutdown, bouncetime=300)
         return None
 
