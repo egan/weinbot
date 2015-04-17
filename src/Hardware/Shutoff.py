@@ -33,7 +33,7 @@ class Shutoff():
         self.shutdown()
         return
 
-    def shutdown():
+    def shutdown(self):
         """
             shutdown: Call stop() methods for shutoff objects.
 
