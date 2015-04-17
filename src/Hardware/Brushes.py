@@ -29,14 +29,14 @@ class Brushes():
         self.stop()
         return
 
-    def start():
+    def start(self):
         """
             start: Start the brush motors.
 
         """
         GPIO.output(self.pin, GPIO.HIGH)
 
-    def stop():
+    def stop(self):
         """
             stop: Stop the brush motors.
 
