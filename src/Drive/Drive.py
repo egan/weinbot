@@ -8,6 +8,7 @@
 
 from Sabertooth.Sabertooth import Sabertooth as Sabertooth
 import logging
+import math
 
 class Drive():
     """
@@ -15,11 +16,12 @@ class Drive():
                commands.
     """
 
-    def __init__(self, speed_max=1.654, speed_limit=1, track=1, ramp=15):
+    def __init__(self, speed_max=1.654, speed_limit=(1, 90), track=1, rcrit=1, ramp=15):
         """
             speed_max:   Maximum physical speed of drive motors (m/s).
-            speed_limit: Speed limit for forward/reverse drive operations (m/s).
-            track:       Track width for the drive wheels.
+            speed_limit: Tuple: speed limit for forward/reverse drive
+                         operations (m/s), speed limit for tight turns (deg/s).
+            track:       Track width for the drive wheels (m).
             ramp:        Sabertooth ramp identifier.
 
         """
@@ -28,9 +30,10 @@ class Drive():
         self.speed_max = speed_max
         self.speed_limit = speed_limit
         self.track = track
+        self.rcrit = rcrit
         self.ramp = ramp
 
-        if (self.speed_limit > self.speed_max):
+        if (self.speed_limit[0] > self.speed_max):
             return None
 
         # Instantiate motor driver object (com. over UART4).
@@ -66,18 +69,16 @@ class Drive():
         if (turn not in validcmds):
             return -1
 
-        if speed < 0:
-            speed = 0
-        elif speed > self.speed_limit:
-            speed = self.speed_limit
-
         if radius < 0:
             radius = 0
 
         # Drive algorithm.
-        # XXX: Check for saturation in turns, add speed limit for turns with
-        # internal radii.
         if turn == "no":
+            # Check speed limit.
+            if speed < 0:
+                speed = 0
+            elif speed > self.speed_limit[0]:
+                speed = self.speed_limit[0]
             # Calculate speed percentage.
             speed = int(float(speed/self.speed_max*100))
             # Debug logging.
@@ -85,38 +86,65 @@ class Drive():
             # Command motor driver.
             self.saber.independentDrive(direction, speed, direction, speed)
         else:
-            # Wheel speeds assuming left turn.
-            if radius == 0:
-                speed_l = -speed
-                speed_r = speed
-            else:
+            if radius >= self.rcrit:
+                # Check speed limit.
+                if speed < 0:
+                    speed = 0
+                elif speed > self.speed_limit[0]:
+                    speed = self.speed_limit[0]
+                # Wheel speeds assuming left turn.
                 speed_l = speed*(2*radius - self.track)/(2*radius)
                 speed_r = speed*(2*radius + self.track)/(2*radius)
-            # Swap if turning right.
-            if turn == "right":
-                speed_l, speed_r = speed_r, speed_l
-
-            # Determine directions assuming driving forward.
-            if speed_l < 0:
-                dir_l = "rev"
+                # Check for saturation.
+                if speed_r > self.speed_max:
+                    # Truncate speed to max attainable at turning radius.
+                    logging.debug("drive (turn): speed truncated due to saturation")
+                    speed_l = self.speed_max/speed_r*speed_l
+                    speed_r = self.speed_max
+                # Swap if turning right.
+                if turn == "right":
+                    speed_l, speed_r = speed_r, speed_l
+                # Calculate speed percentages.
+                speed_l = abs(int(float(speed_l/self.speed_max*100)))
+                speed_r = abs(int(float(speed_r/self.speed_max*100)))
+                # Debug logging.
+                logging.debug("drive (turn): %s %d %s %d" %(direction, speed_l, direction, speed_r))
+                # Command motor driver.
+                self.saber.independentDrive(direction, speed_l, direction, speed_r)
             else:
-                dir_l = "fwd"
+                # Check speed limit.
+                if speed < 0:
+                    speed = 0
+                elif speed > self.speed_limit[1]:
+                    speed = self.speed_limit[1]
+                # Convert speed to rad/s.
+                speed = math.pi*speed/180
+                # Wheel speeds assuming left turn.
+                speed_l = speed*(2*radius - self.track)/2
+                speed_r = speed*(2*radius + self.track)/2
+                # Swap if turning right.
+                if turn == "right":
+                    speed_l, speed_r = speed_r, speed_l
+                # Calculate speed percentages.
+                speed_l = abs(int(float(speed_l/self.speed_max*100)))
+                speed_r = abs(int(float(speed_r/self.speed_max*100)))
+                # Determine directions assuming driving forward.
+                if speed_l < 0:
+                    dir_l = "rev"
+                else:
+                    dir_l = "fwd"
 
-            if speed_r < 0:
-                dir_r = "rev"
-            else:
-                dir_r = "fwd"
-            # Swap if driving reverse.
-            if direction == "rev":
-                dir_l, dir_r = dir_r, dir_l
-
-            # Calculate speed percentages.
-            speed_l = abs(int(float(speed_l/self.speed_max*100)))
-            speed_r = abs(int(float(speed_r/self.speed_max*100)))
-            # Debug logging.
-            logging.debug("drive (turn): %s %d %s %d" %(dir_l, speed_l, dir_r, speed_r))
-            # Command motor driver.
-            self.saber.independentDrive(dir_l, speed_l, dir_r, speed_r)
+                if speed_r < 0:
+                    dir_r = "rev"
+                else:
+                    dir_r = "fwd"
+                # Swap if driving reverse.
+                if direction == "rev":
+                    dir_l, dir_r = dir_r, dir_l
+                # Debug logging.
+                logging.debug("drive (turn): %s %d %s %d" %(dir_l, speed_l, dir_r, speed_r))
+                # Command motor driver.
+                self.saber.independentDrive(dir_l, speed_l, dir_r, speed_r)
 
 
     def stop(self):
