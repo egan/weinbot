@@ -49,5 +49,5 @@ class Shutoff():
 
         # Wait until switch is reset.
         logging.debug("shutoff: waiting for reset")
-        GPIO.wait_for_edge(self.pin, GPIO_FALLING)
+        GPIO.wait_for_edge(self.pin, GPIO.FALLING)
         return
