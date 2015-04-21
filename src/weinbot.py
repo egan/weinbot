@@ -24,19 +24,20 @@ logger.setLevel(logging.DEBUG)
 deadman = "P9_42"
 
 ## Initialization.
-# Deadman's switch handling.
-GPIO.setup(deadman, GPIO.OUT)
-
-def exit_handler():
-    GPIO.output(deadman, GPIO.LOW)
-    logging.debug("WEINBot control software exiting")
-
-atexit.register(exit_handler)
-GPIO.output(deadman, GPIO.HIGH)
-
 # Instantiate hardware objects.
 alarm = Alarm()
 brushes = Brushes()
 drive = Drive()
 pump = Pump()
 shutoff = Shutoff(objects=[alarm, brushes, drive, pump])
+
+# Deadman's switch handling.
+GPIO.setup(deadman, GPIO.OUT)
+
+def exit_handler():
+    shutoff.shutdown()
+    GPIO.output(deadman, GPIO.LOW)
+    logging.debug("WEINBot control software exiting")
+
+atexit.register(exit_handler)
+GPIO.output(deadman, GPIO.HIGH)
