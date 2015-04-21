@@ -1,44 +1,44 @@
 # Official:
-dosfstools:           utilities for DOS filesystems
-sudo:                 run programs as other users
-tmux:                 terminal multiplexer
-vim:                  feature-rich editor
-ntp:                  network time synchonization
-git:                  version control
-bash-completion:      convenient command completions
-mlocate:              file database and search
-moreutils:            useful extension to coreutils
-wget:                 web downloader
-bc:                   calculator
-python:               python
-base-devel:           base development tools inc. gcc
-i2c-tools:            utilities for I²C
-ifplugd:              dynamic network interface daemon
-ctags:                tag generator for C files
-gdb:                  debugger
-strace:               stack tracer
-htop:                 process resource monitor
-iftop:                network traffic monitor
-iotop:                storage traffic monitor
-powertop:             power usage monitor
-bwm-ng:               network usage monitor
-procinfo-ng:          utilities for /proc filesystem
-jshon:                json parser
-lsof:                 list open files
-inotify-tools:        interface to inotify
-nmap:                 network mapper
-iptraf-ng:            ip traffic monitor
-tcpdump:              tcp packet monitor
-cython:               C extensions for python
-ipython2:             interactive python console
-python2-pip:          package manager
-python2-bottleneck:   fast versions of scipy modules
-python2-numpy:        matrix library
-python2-pillow:       imaging library
-python2-pyserial:     serial communication library
-python2-scikit-learn: machine learning library
-python2-scipy:        scipy misc library
-python2-sympy:        symbolic manipulation library
+dosfstools:               utilities for DOS filesystems
+sudo:                     run programs as other users
+tmux:                     terminal multiplexer
+vim:                      feature-rich editor
+ntp:                      network time synchonization
+git:                      version control
+bash-completion:          convenient command completions
+mlocate:                  file database and search
+moreutils:                useful extension to coreutils
+wget:                     web downloader
+bc:                       calculator
+python:                   python
+base-devel:               base development tools inc. gcc
+i2c-tools:                utilities for I²C
+ifplugd:                  dynamic network interface daemon
+ctags:                    tag generator for C files
+gdb:                      debugger
+strace:                   stack tracer
+htop:                     process resource monitor
+iftop:                    network traffic monitor
+iotop:                    storage traffic monitor
+powertop:                 power usage monitor
+bwm-ng:                   network usage monitor
+procinfo-ng:              utilities for /proc filesystem
+jshon:                    json parser
+lsof:                     list open files
+inotify-tools:            interface to inotify
+nmap:                     network mapper
+iptraf-ng:                ip traffic monitor
+tcpdump:                  tcp packet monitor
+cython:                   C extensions for python
+ipython2:                 interactive python console
+python2-pip:              package manager
+python2-bottleneck:       fast versions of scipy modules
+python2-numpy:            matrix library
+python2-pillow:           imaging library
+python2-pyserial:         serial communication library
+python2-scikit-learn:     machine learning library
+python2-scipy:            scipy misc library
+python2-sympy:            symbolic manipulation library
 
 # AUR:
 python3-threaded_servers: dependency for quickserve
@@ -46,3 +46,6 @@ quickserve:               ad-hoc web hosting (python)
 
 # PIP:
 Adafruit_BBIO:            BBB IO library (Python2)
+
+# Manual:
+RTIMULib:                 C++ IMU library with Python bindings
