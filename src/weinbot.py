@@ -37,7 +37,7 @@ shutoff = Shutoff(objects=[alarm, brushes, drive, pump])
 GPIO.setup(deadman, GPIO.OUT)
 
 def exit_handler():
-    shutoff.shutdown()
+    shutoff.shutdown("interpreter exit")
     GPIO.output(deadman, GPIO.LOW)
     logging.debug("WEINBot control software exiting")
 
