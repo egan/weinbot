@@ -19,6 +19,7 @@ from Hardware import *
 ## Logging.
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
+logging.debug("WEINBot control software launching %s" %(time.strftime("%a, %D %T")))
 
 ## Parameters.
 deadman = "P9_42"
