@@ -9,6 +9,7 @@
 from __future__ import division
 import atexit
 import logging
+import time
 import Adafruit_BBIO.GPIO as GPIO
 
 ## In-house libraries and modules.
