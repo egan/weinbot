@@ -16,7 +16,6 @@ import Adafruit_BBIO.GPIO as GPIO
 from Drive.Drive import Drive as Drive
 from Hardware import *
 
-
 ## Logging.
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -37,7 +36,7 @@ shutoff = Shutoff(objects=[alarm, brushes, drive, pump])
 GPIO.setup(deadman, GPIO.OUT)
 
 def exit_handler():
-    shutoff.shutdown("interpreter exit")
+    GPIO.cleanup()
     GPIO.output(deadman, GPIO.LOW)
     logging.debug("WEINBot control software exiting")
 
