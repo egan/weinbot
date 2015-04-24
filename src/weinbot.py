@@ -15,6 +15,7 @@ import Adafruit_BBIO.GPIO as GPIO
 ## In-house libraries and modules.
 from Drive.Drive import Drive as Drive
 from Hardware import *
+from Sensors import *
 from Navigate.Path.Path import Path
 
 ## Logging.
