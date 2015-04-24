@@ -46,4 +46,5 @@ GPIO.output(deadman, GPIO.HIGH)
 
 ## Run.
 path_spec = [("fwd", 1, "right", 2, 10)]
-path = Path(drive, path_spec)
+path = Path(drive)
+path.path(path_spec, 5)
