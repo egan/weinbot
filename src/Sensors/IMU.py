@@ -84,7 +84,7 @@ class IMU():
             if (self.go):
                 # XXX: Always returns false.
                 if self.imu.IMURead():
-                    self.data = imu.getFusionData()
+                    self.data = self.imu.getFusionData()
                     time.sleep(self.poll_interval)
                 else:
                     logging.debug("imu: failed to read")
