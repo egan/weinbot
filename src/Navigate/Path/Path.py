@@ -31,7 +31,7 @@ class Path():
     def __del__(self):
         self.drive.stop()
 
-    def path(self, path_spec, delay):
+    def path(self, path_spec, delay=10):
         """
             path: Implement thread to iterate through list of path commands.
 
@@ -45,10 +45,10 @@ class Path():
             self.path_spec = path_spec
             self.delay = delay
             self.lock = True
-            t = threading.Thread(target=self.handler)
+            t = threading.Thread(target=self.__handler)
             t.start()
 
-    def handler(self):
+    def __handler(self):
         time.sleep(self.delay)
         logging.debug("path: starting path")
         # Iterate through list of path commands.
