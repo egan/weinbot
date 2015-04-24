@@ -39,6 +39,7 @@ python2-pyserial:         serial communication library
 python2-scikit-learn:     machine learning library
 python2-scipy:            scipy misc library
 python2-sympy:            symbolic manipulation library
+rsync:                    network file synchronization
 
 # AUR:
 python3-threaded_servers: dependency for quickserve
