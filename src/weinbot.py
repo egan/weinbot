@@ -15,6 +15,7 @@ import Adafruit_BBIO.GPIO as GPIO
 ## In-house libraries and modules.
 from Drive.Drive import Drive as Drive
 from Hardware import *
+from Navigate.Path.Path import Path
 
 ## Logging.
 logger = logging.getLogger()
@@ -42,3 +43,7 @@ def exit_handler():
 
 atexit.register(exit_handler)
 GPIO.output(deadman, GPIO.HIGH)
+
+## Run.
+path_spec = [("fwd", 1, "right", 2, 10)]
+path = Path(drive, path_spec)
