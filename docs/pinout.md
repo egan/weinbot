@@ -8,6 +8,11 @@ At this time, only `P9_13` (`TX`) is used.
 Both exposed I²C buses are used, consuming pins `P9_{17..22, 24, 26}`.
 The communication with the IMU is performed over `I2C1` and communication with the LIDAR-Lite (planned) is performed over `I2C2`.
 
+There is an error in the official pinmap with respect to the I²C pins on the rev.A BBB.
+The working pins are as follows for bus 1:
+* `P9_19`: IMU clock
+* `P9_20`: IMU data
+
 ## PWM
 The LIDAR servomechanism (planned) is controlled with PWM, consuming pin `P8_46`.
 
@@ -29,5 +34,8 @@ The load cell and tank sensor (planned) each require a single `AIN` pin:
 
 * `P9_42`: motor driver deadman's switch.
 * `P8_{11..13}`: continuous duty motor control relays.
+	* `P8_11`: brush motors relay
+	* `P8_12`: conveyor motor relay
+	* `P8_13`: pump relay
 * `P8_{21..25}`: alarm siren select
 * `P8_26`: alarm siren switch
