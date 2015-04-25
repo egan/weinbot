@@ -14,7 +14,7 @@ class Pump():
                  water pump via GPIO.
     """
 
-    def __init__(self, pin="P8_XX"):
+    def __init__(self, pin="P8_13"):
         """
             pin: BBB GPIO pin to control the water pump.
 
