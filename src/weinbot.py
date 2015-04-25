@@ -30,6 +30,7 @@ deadman = "P9_42"
 # Instantiate hardware objects.
 alarm = Alarm()
 brushes = Brushes()
+conveyor = Conveyor()
 drive = Drive()
 pump = Pump()
 shutoff = Shutoff(objects=[alarm, brushes, drive, pump])
