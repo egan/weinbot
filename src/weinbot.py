@@ -33,7 +33,7 @@ brushes = Brushes()
 conveyor = Conveyor()
 drive = Drive()
 pump = Pump()
-shutoff = Shutoff(objects=[alarm, brushes, drive, pump])
+shutoff = Shutoff(objects=[alarm, brushes, conveyor, drive, pump])
 
 # Instantiate sensor objects.
 imu = IMU()
@@ -44,8 +44,8 @@ GPIO.setup(deadman, GPIO.OUT)
 def exit_handler():
     imu.go = False
     GPIO.cleanup()
-    GPIO.output(deadman, GPIO.LOW)
     logging.debug("WEINBot control software exiting")
+    exit
 
 atexit.register(exit_handler)
 GPIO.output(deadman, GPIO.HIGH)
