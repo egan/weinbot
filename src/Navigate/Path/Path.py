@@ -24,12 +24,13 @@ class Path():
         """
 
         self.drive = drive
+        self.go = True
         self.lock = False
 
         return None
 
     def __del__(self):
-        self.drive.stop()
+        self.stop()
 
     def path(self, path_spec, delay=10):
         """
@@ -48,20 +49,31 @@ class Path():
             t = threading.Thread(target=self.__handler)
             t.start()
 
+    def stop(self):
+        """
+            stop: Cancel the path and stop drive.
+
+        """
+        logging.debug("path: stopped")
+        self.go=False
+        # This call to drive.stop() is not extraneous, do not remove.
+        self.drive.stop()
+
     def __handler(self):
         time.sleep(self.delay)
         logging.debug("path: starting path")
         # Iterate through list of path commands.
         for cmd in self.path_spec:
-            logging.debug("path: maintain for %ds" %(cmd[4]))
-            ret = self.drive.drive(cmd[0], cmd[1], cmd[2], cmd[3])
-            # Cancel if command malformed.
-            if ret == -1:
-                logging.debug("path: illegal drive command, path cancelled")
-                return
+            if self.go:
+                logging.debug("path: maintain for %ds" %(cmd[4]))
+                ret = self.drive.drive(cmd[0], cmd[1], cmd[2], cmd[3])
+                # Cancel if command malformed.
+                if ret == -1:
+                    logging.debug("path: illegal drive command, path cancelled")
+                    return
 
-            # Sleep until next command.
-            time.sleep(cmd[4])
+                # Sleep until next command.
+                time.sleep(cmd[4])
 
         self.drive.stop()
         self.lock = False
