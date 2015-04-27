@@ -9,6 +9,7 @@
 from __future__ import division
 import atexit
 import logging
+import sys
 import time
 import Adafruit_BBIO.GPIO as GPIO
 
@@ -33,20 +34,27 @@ brushes = Brushes()
 conveyor = Conveyor()
 drive = Drive()
 pump = Pump()
-shutoff = Shutoff(objects=[alarm, brushes, drive, pump])
+
+# Instantiate control objects.
+path = Path(drive)
+shutoff = Shutoff(objects=[alarm, brushes, conveyor, drive, pump])
+
+# Instantiate sensor objects.
+imu = IMU()
 
 # Deadman's switch handling.
 GPIO.setup(deadman, GPIO.OUT)
 
 def exit_handler():
+    imu.go = False
     GPIO.cleanup()
-    GPIO.output(deadman, GPIO.LOW)
+
     logging.debug("WEINBot control software exiting")
+    sys.exit
 
 atexit.register(exit_handler)
 GPIO.output(deadman, GPIO.HIGH)
 
 ## Run.
 path_spec = [("fwd", 1, "right", 2, 10)]
-path = Path(drive)
 path.path(path_spec, 5)

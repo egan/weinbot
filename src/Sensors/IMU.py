@@ -10,6 +10,7 @@ import RTIMU
 import threading
 import time
 import logging
+import math
 
 class IMU():
     """
@@ -22,8 +23,8 @@ class IMU():
             settings: Basename of the RTIMULib settings file.
 
         """
-        s = RTIMU.Settings(settings)
-        self.imu = RTIMU.RTIMU(s)
+        self.s = RTIMU.Settings(settings)
+        self.imu = RTIMU.RTIMU(self.s)
         self.go = True
 
         if (not self.imu.IMUInit()):
@@ -42,53 +43,49 @@ class IMU():
         self.poll_interval = self.imu.IMUGetPollInterval()/1000
 
         # Start IMU read thread.
-        t = threading.Thread(target=self.__handler)
-        logging.debug("imu: reading started")
+        t = threading.Thread(target=self.__imuSample)
         t.start()
+        logging.debug("imu: reading started at %dms sample period" %(self.poll_interval*1000))
 
         return None
 
     def __del__(self):
         self.go = False
 
-    def accelX():
+    def accelX(self):
         """
             accelX(): Return longitudinal acceleration (m/s^2).
 
         """
-        return self.data["accel"][0]
+        return self.data["accel"][0]*9.81
 
-    def accelY():
+    def accelY(self):
         """
             accelY(): Return lateral acceleration (m/s^2).
 
         """
-        return self.data["accel"][1]
+        return self.data["accel"][1]*9.81
 
-    def accelZ():
+    def accelZ(self):
         """
             accelZ(): Return heave acceleration (m/s^2).
 
         """
-        return self.data["accel"][2]
+        return self.data["accel"][2]*9.81
 
-    def yaw():
+    def yaw(self):
         """
             accelZ(): Return yaw angle (deg).
 
         """
         return math.degrees(self.data["fusionPose"][2])
 
-    def __handler(self):
-        while True:
-            if (self.go):
-                # XXX: Always returns false.
-                if self.imu.IMURead():
-                    self.data = self.imu.getFusionData()
-                    time.sleep(self.poll_interval)
-                else:
-                    logging.debug("imu: failed to read")
-                    time.sleep(self.poll_interval)
-            else:
-                logging.debug("imu: reading halted")
-                return
+    def __imuSample(self):
+        while self.go:
+            if self.imu.IMURead():
+                self.data = self.imu.getIMUData()
+
+            time.sleep(self.poll_interval)
+
+        logging.debug("imu: reading halted")
+        return
