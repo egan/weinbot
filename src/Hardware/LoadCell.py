@@ -1,5 +1,5 @@
 ##
-# Hardware.py: Class implementing control of WEINBot Human Machine Interface.
+# Hardware.py: Class implementing control of WEINBot Load Cell.
 #
 # Copyright 2015, Natalie Pueyo Svoboda
 #
@@ -25,14 +25,18 @@ class LoadCell():
         ADC.setup()
         return None
 
-    def __del__(self):
-        self.stop()
-        return
-
-    def start(self):
+    def read_load(self):
         """
             start: Read the load cell value.
 
         """
         logging.debug("reading load cell value")
-        weight_reading = ADC.read(pin) # if that doesn't work, pin number replaces pin
+        weight_reading = ADC.read(self.pin) 
+
+    def sleep_load(self):
+        """
+            stop: Stop reading values from the load cell.
+
+        """
+        logging.debug("stopped reading load cell values")
+        GPIO.output(self.pin, GPIO.IN)
