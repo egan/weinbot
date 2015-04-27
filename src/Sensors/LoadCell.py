@@ -2,6 +2,7 @@
 # LoadCell.py: Class implementing reading of WEINBot load cell.
 #
 # Copyright 2015, Natalie Pueyo Svoboda
+#                 Egan McComb
 #
 ##
 
@@ -27,9 +28,10 @@ class LoadCell():
 
     def read(self):
         """
-            read: Read the load cell value (normalized).
+            read: Read the weight on the load cell (normalized).
 
         """
         logging.debug("loadcell: reading load cell value")
-        weight_reading = ADC.read(self.pin)
+        weight = ADC.read(self.pin)
 
+        return weight
