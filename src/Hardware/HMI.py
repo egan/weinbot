@@ -1,5 +1,5 @@
 ##
-# HMI.py: Class implementing reading of WEINBot Human Machine Interface.
+# HMI.py: Class implementing reading of HMI SPDT toggle array.
 #
 # Copyright 2015, Natalie Pueyo Svoboda
 #
@@ -10,8 +10,8 @@ import logging
 
 class HMI():
     """
-        HMI: A class that provides an interface to read the HMI switches to
-             select the desired WEINBot demo.
+        HMI: A class that provides an interface to read the HMI SPST toggle switches.
+
     """
 
     def __init__(self, pins=("P8_37", "P8_38", "P8_39", "P8_40", "P8_41", "P8_42", "P8_43", "P8_44")):
@@ -27,13 +27,9 @@ class HMI():
 
         return None
 
-    def __del__(self):
-        self.stop()
-        return
-
     def read(self):
         """
-            read: Read GPIO pins to determine what demo will be set.
+            read: Return numeric identifier of toggle switch state.
 
         """
         state = 0
