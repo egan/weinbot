@@ -6,6 +6,8 @@
 ##
 
 import Adafruit_BBIO.GPIO as GPIO
+import threading
+import time
 import logging
 
 class Alarm():
@@ -28,6 +30,7 @@ class Alarm():
         """
 
         # Set up GPIO.
+        self.go = False
         self.pin_enable = pin_enable
         GPIO.setup(pin_enable, GPIO.OUT)
         self.pins_selector = pins_selector
@@ -46,7 +49,24 @@ class Alarm():
 
         """
         logging.debug("alarm: started")
+        self.go = True
         GPIO.output(self.pin_enable, GPIO.HIGH)
+
+    def runTimed(self, tone, time):
+        """
+            runTimed: Run alarm tone for time.
+
+                tone: Tone or alias to produce.
+                time: Time to run (s).
+        """
+        self.setTone(tone)
+        t = threading.Thread(target=self.__handler, args=(time))
+        t.start()
+
+    def __handler(self, t):
+        self.start()
+        time.sleep(t)
+        self.stop()
 
     def setTone(self, tone):
         """
@@ -64,8 +84,11 @@ class Alarm():
             logging.debug("setTone: invalid tone number or alias")
             return -1
 
-        # Pause alarm.
-        self.stop()
+        # Pause alarm if needed.
+        if self.go:
+            self.stop()
+            self.go = True
+
         # Write tone selector bits.
         if (tone & 0x1):
             GPIO.output(self.pins_selector[0], GPIO.HIGH)
@@ -91,9 +114,12 @@ class Alarm():
             GPIO.output(self.pins_selector[4], GPIO.HIGH)
         else:
             GPIO.output(self.pins_selector[4], GPIO.LOW)
-        # Resume alarm.
+
         logging.debug("setTone: %d" %(tone))
-        self.start()
+
+        # Resume alarm if needed.
+        if self.go:
+            self.start()
 
     def stop(self):
         """
@@ -101,4 +127,5 @@ class Alarm():
 
         """
         logging.debug("alarm: stopped")
+        self.go = False
         GPIO.output(self.pin_enable, GPIO.LOW)
