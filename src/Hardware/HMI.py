@@ -11,7 +11,7 @@ import logging
 
 class HMI():
     """
-        HMI: A class that provides an interface to read the HMI SPST toggle switches.
+        HMI: A class that provides an interface to read the HMI SPDT toggle switches.
 
     """
 
@@ -58,7 +58,9 @@ class HMI():
 
     def read(self):
         """
-            read: Return numeric identifier of toggle switch state.
+            read: Return numeric identifier of toggle switch state. This method
+                  is meant to be run in a continuous loop and so should be tested
+                  carefully.
 
         """
         # Determine state of every switch.
