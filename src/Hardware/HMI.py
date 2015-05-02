@@ -2,6 +2,7 @@
 # HMI.py: Class implementing reading of HMI SPDT toggle array.
 #
 # Copyright 2015, Natalie Pueyo Svoboda
+#                 Egan McComb
 #
 ##
 
