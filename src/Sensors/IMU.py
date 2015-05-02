@@ -57,28 +57,32 @@ class IMU():
             accelX(): Return longitudinal acceleration (m/s^2).
 
         """
-        return self.data["accel"][0]*9.81
+        if self.go:
+            return self.data["accel"][0]*9.81
 
     def accelY(self):
         """
             accelY(): Return lateral acceleration (m/s^2).
 
         """
-        return self.data["accel"][1]*9.81
+        if self.go:
+            return self.data["accel"][1]*9.81
 
     def accelZ(self):
         """
             accelZ(): Return heave acceleration (m/s^2).
 
         """
-        return self.data["accel"][2]*9.81
+        if self.go:
+            return self.data["accel"][2]*9.81
 
     def yaw(self):
         """
             accelZ(): Return yaw angle (deg).
 
         """
-        return math.degrees(self.data["fusionPose"][2])
+        if self.go:
+            return math.degrees(self.data["fusionPose"][2])
 
     def __imuSample(self):
         while self.go:
@@ -88,4 +92,3 @@ class IMU():
             time.sleep(self.poll_interval)
 
         logging.debug("imu: reading halted")
-        return
