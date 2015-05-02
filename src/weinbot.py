@@ -34,6 +34,7 @@ alarm = Alarm()
 brushes = Brushes()
 conveyor = Conveyor()
 drive = Drive()
+hmi = HMI()
 pump = Pump()
 
 # Instantiate control objects.
@@ -59,3 +60,5 @@ GPIO.output(deadman, GPIO.HIGH)
 ## Run.
 # Signal control software ready.
 alarm.strobe(1, (0.4, 0.2, 0.4, 0.2, 0.4))
+
+# Mode selection loop.
