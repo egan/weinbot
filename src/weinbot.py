@@ -18,6 +18,7 @@ from Drive.Drive import Drive as Drive
 from Hardware import *
 from Sensors import *
 from Navigate.Path.Path import Path
+import demos
 
 ## Logging.
 logger = logging.getLogger()
@@ -56,5 +57,5 @@ atexit.register(exit_handler)
 GPIO.output(deadman, GPIO.HIGH)
 
 ## Run.
-path_spec = [("fwd", 1, "right", 2, 10)]
-path.path(path_spec, 5)
+# Signal control software ready.
+alarm.strobe(1, (0.4, 0.2, 0.4, 0.2, 0.4))
