@@ -52,21 +52,22 @@ class Alarm():
         self.go = True
         GPIO.output(self.pin_enable, GPIO.HIGH)
 
-    def runTimed(self, tone, time):
+    def strobe(self, tone, time_spec):
         """
-            runTimed: Run alarm tone for time.
+            strobe: Strobe alarm tone according to time.
 
-                tone: Tone or alias to produce.
-                time: Time to run (s).
+                tone:      Tone or alias to produce.
+                time_spec: List of times for toggle (s).
         """
         self.setTone(tone)
-        t = threading.Thread(target=self.__handler, args=(time))
+        t = threading.Thread(target=self.__handler, args=(time_spec,))
         t.start()
 
-    def __handler(self, t):
-        self.start()
-        time.sleep(t)
-        self.stop()
+    def __handler(self, time_spec):
+        for t in time_spec:
+            self.toggle()
+            time.sleep(t)
+        self.toggle()
 
     def setTone(self, tone):
         """
@@ -119,6 +120,16 @@ class Alarm():
 
         # Resume alarm if needed.
         if self.go:
+            self.start()
+
+    def toggle(self):
+        """
+            toggle: Toggle alarm state.
+
+        """
+        if self.go:
+            self.stop()
+        else:
             self.start()
 
     def stop(self):
