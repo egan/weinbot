@@ -69,14 +69,19 @@ class HMI():
             # Impossible state: void reading.
             return
 
-        if self.lock:
-            # Trigger not reset, skip!
-            return
-        elif state[self.trigger] == 0:
+        if state[self.trigger] == 0:
             # Trigger not active, skip.
-            self.lock = False
+            if self.lock:
+                logging.debug("hmi: resetting lock")
+                self.lock = False
+            return
+        elif self.lock:
+            # Trigger not reset, skip!
+            # logging.debug("hmi: waiting for trigger reset")
             return
         else:
             # Trigger active: set lock and return state.
+            logging.debug("hmi: state read")
             self.lock = True
             return state
+
