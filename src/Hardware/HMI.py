@@ -72,7 +72,7 @@ class HMI():
         if self.lock:
             # Trigger not reset, skip!
             return
-        elif state[trigger] == 0:
+        elif state[self.trigger] == 0:
             # Trigger not active, skip.
             return
         else:
