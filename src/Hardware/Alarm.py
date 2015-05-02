@@ -64,10 +64,12 @@ class Alarm():
         t.start()
 
     def __handler(self, time_spec):
+        logging.debug("alarm: strobe started")
         for t in time_spec:
             self.toggle()
             time.sleep(t)
         self.toggle()
+        logging.debug("alarm: strobe stopped")
 
     def setTone(self, tone):
         """
