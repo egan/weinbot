@@ -45,7 +45,7 @@ class HMI():
             # Check for circuitry fault.
             if GPIO.input(switch[1]):
                 # Impossible state.
-                logging.debug("hmi: impossible state detected")
+                logging.debug("hmi: impossible state detected on %s" %(switch[0]+ ',' + switch[1]))
                 return None
             # Switch is low.
             return -1
