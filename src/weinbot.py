@@ -9,6 +9,7 @@
 from __future__ import division
 import atexit
 import logging
+import subprocess
 import sys
 import time
 import Adafruit_BBIO.GPIO as GPIO
@@ -26,7 +27,6 @@ logger.setLevel(logging.DEBUG)
 logging.debug("WEINBot control software launching %s" %(time.strftime("%a, %D %T")))
 
 ## Parameters.
-deadman = "P9_42"
 
 ## Initialization.
 # Instantiate hardware objects. See available init() arguments in respective docstrings.
@@ -44,9 +44,7 @@ shutoff = Shutoff(objects=[alarm, brushes, conveyor, drive, pump])
 # Instantiate sensor objects.
 imu = IMU()
 
-# Deadman's switch handling.
-GPIO.setup(deadman, GPIO.OUT)
-
+# Utility functions.
 def exit_handler():
     imu.go = False
     GPIO.cleanup()
@@ -55,7 +53,14 @@ def exit_handler():
     sys.exit
 
 atexit.register(exit_handler)
-GPIO.output(deadman, GPIO.HIGH)
+
+def poweroff():
+    shutoff.shutdown()
+    subprocess.call("poweroff")
+
+def reboot():
+    shutoff.shutdown()
+    subprocess.call("reboot")
 
 ## Run.
 # Signal control software ready.
