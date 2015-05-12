@@ -86,5 +86,5 @@ class HMI():
             # Trigger active: set lock and return state.
             logging.debug("hmi: state read")
             self.lock = True
-            return state
+            return tuple(state)
 
