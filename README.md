@@ -19,3 +19,4 @@ In this way, our device will serve as a good foundation for potential further ro
 ### [IMU Communication and Calibration](docs/imu.md)
 
 ## Operation and Demonstration
+### [Deploying the WEINBot Software](docs/deploy.md)
