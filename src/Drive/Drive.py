@@ -19,7 +19,7 @@ class Drive():
                layer to take vehicle dynamics into account is recommended.
     """
 
-    def __init__(self, speed_max=1.654, speed_limit=(1, 90), track=1, rcrit=1, ramp=15):
+    def __init__(self, speed_max=1.654, speed_limit=(1, 90), track=0.656, rcrit=1, ramp=15):
         """
             speed_max:   Maximum physical speed of drive motors (m/s).
             speed_limit: Tuple: speed limit for forward/reverse drive
