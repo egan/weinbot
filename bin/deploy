@@ -17,5 +17,5 @@ fi
 
 cd /home/dev/code/weinbot/src
 gcc launch.c -o weinbot
-chmod +s u weinbot
+chmod u+s weinbot
 cp -R /home/dev/code/weinbot/src/*  /home/wtf
