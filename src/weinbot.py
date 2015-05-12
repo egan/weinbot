@@ -45,6 +45,13 @@ shutoff = Shutoff(objects=[alarm, brushes, conveyor, drive, pump])
 imu = IMU()
 
 # Utility functions.
+def run_from_ipython():
+    try:
+        __IPYTHON__
+        return True
+    except NameError:
+        return False
+
 def exit_handler():
     imu.go = False
     GPIO.cleanup()
@@ -62,8 +69,27 @@ def reboot():
     shutoff.shutdown()
     subprocess.call("reboot")
 
+# Command mapping.
+dispatcher = {
+        (-1, -1, -1, -1): reboot,
+        (-1, 1, -1, 1): poweroff,
+        }
+
 ## Run.
 # Signal control software ready.
 alarm.strobe(1, (0.4, 0.2, 0.4, 0.2, 0.4))
 
-# Mode selection loop.
+# Mode selection loop (only in non-interactive mode).
+if not run_from_ipython():
+    while True:
+        command = hmi.read()
+        if command in dispatcher.keys():
+            dispatcher[command]()
+        elif command is not None:
+            logging.debug("mos: unmapped command %s" %(repr(command)))
+        else:
+            pass
+else:
+        logging.debug("WEINBot control software ready for interaction")
+
+
