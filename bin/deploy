@@ -1,0 +1,21 @@
+#!/bin/bash
+
+##
+# deploy  -- deploy control software to installation location
+#
+# usage   -- deploy
+#
+# written -- 12 May 2015 by Egan McComb
+##
+
+##----MAIN----##
+if [[ $EUID != "0" ]]
+then
+	echo "Error: Must be root"
+	exit 1
+fi
+
+cd /home/dev/code/weinbot/src
+gcc launch.c -o weinbot
+chmod +s u weinbot
+cp -R /home/dev/code/weinbot/src/*  /home/wtf
