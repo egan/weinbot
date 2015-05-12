@@ -18,10 +18,10 @@ The LIDAR servomechanism (planned) is controlled with PWM, consuming pin `P8_46`
 
 ## Analog Input
 The BBB's ADC consumes pins `P9_{32..40}`.
-The load cell and tank sensor (planned) each require a single `AIN` pin:
+The load cell and flow sensor (planned) each require a single `AIN` pin:
 
 * `P9_36`: load cell.
-* `P9_38`: tank sensor.
+* `P9_38`: flow sensor.
 
 ## GPIO
 ### Digital Input

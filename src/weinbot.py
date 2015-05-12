@@ -29,7 +29,7 @@ logging.debug("WEINBot control software launching %s" %(time.strftime("%a, %D %T
 deadman = "P9_42"
 
 ## Initialization.
-# Instantiate hardware objects.
+# Instantiate hardware objects. See available init() arguments in respective docstrings.
 alarm = Alarm()
 brushes = Brushes()
 conveyor = Conveyor()
