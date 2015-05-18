@@ -95,28 +95,38 @@ class Alarm():
         # Write tone selector bits.
         if (tone & 0x1):
             GPIO.output(self.pins_selector[0], GPIO.HIGH)
+            print 0: 1
         else:
             GPIO.output(self.pins_selector[0], GPIO.LOW)
+            print 0: 0
 
         if (tone & 0x2):
             GPIO.output(self.pins_selector[1], GPIO.HIGH)
+            print 1: 1
         else:
             GPIO.output(self.pins_selector[1], GPIO.LOW)
+            print 1: 0
 
         if (tone & 0x4):
             GPIO.output(self.pins_selector[2], GPIO.HIGH)
+            print 2: 1
         else:
             GPIO.output(self.pins_selector[2], GPIO.LOW)
+            print 2: 0
 
         if (tone & 0x8):
             GPIO.output(self.pins_selector[3], GPIO.HIGH)
+            print 3: 1
         else:
             GPIO.output(self.pins_selector[3], GPIO.LOW)
+            print 3: 0
 
         if (tone & 0x10):
             GPIO.output(self.pins_selector[4], GPIO.HIGH)
+            print 4: 1
         else:
             GPIO.output(self.pins_selector[4], GPIO.LOW)
+            print 4: 0
 
         logging.debug("setTone: %d" %(tone))
 

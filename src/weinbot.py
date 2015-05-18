@@ -95,6 +95,7 @@ if not run_from_ipython():
 
             if counter >= waste_samples:
                 # XXX: Waste is full, stop and alert.
+                pass
 
         command = hmi.read()
         if command in dispatcher.keys():
