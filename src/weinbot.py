@@ -27,6 +27,10 @@ logger.setLevel(logging.DEBUG)
 logging.debug("WEINBot control software launching %s" %(time.strftime("%a, %D %T")))
 
 ## Parameters.
+measure_waste = False
+waste_critical = 0.5
+waste_samples = 3
+waste_counter = 0
 
 ## Initialization.
 # Instantiate hardware objects. See available init() arguments in respective docstrings.
@@ -34,6 +38,7 @@ alarm = Alarm()
 brushes = Brushes()
 conveyor = Conveyor()
 drive = Drive()
+loadcell = LoadCell()
 hmi = HMI()
 pump = Pump()
 
@@ -62,7 +67,7 @@ def exit_handler():
 atexit.register(exit_handler)
 
 def poweroff():
-    shutoff.shutdown()
+    shutoff.shutdown(1)
     subprocess.call("poweroff")
 
 def reboot():
@@ -82,6 +87,15 @@ alarm.strobe(1, (0.4, 0.2, 0.4, 0.2, 0.4))
 # Mode selection loop (only in non-interactive mode).
 if not run_from_ipython():
     while True:
+        if measure_waste:
+            if loadcell.read() > waste_critical:
+                counter += 1
+            else:
+                counter = 0
+
+            if counter >= waste_samples:
+                # XXX: Waste is full, stop and alert.
+
         command = hmi.read()
         if command in dispatcher.keys():
             dispatcher[command]()
