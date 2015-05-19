@@ -27,3 +27,9 @@ Refer to those resources for documentation.
 ## Booting Straight to SD
 To facilitate unattended boot straight to SD (rather than internal eMMC), merely zero out the onboard boot partition with `dd`.
 **Note that this will destroy data on the referenced volume!**
+
+## Automatic Login of Operative User `wtf`
+To automatically login user `wtf`, add the `systemd` `getty` service [override](../etc/override.conf) to `/etc/systemd/system/getty@tty1.service.d/override.conf`.
+On reboot, the user `wtf` should be shown in the output of `w` as logged in on `tty1`.
+Automatic running of software as this user can be accomplished by editing their `.bash_profile` configuration file.
+It is recommended that programs be run inside the terminal multiplexer `tmux` so that one may attach to the appropriate session to monitor and control its operation.
