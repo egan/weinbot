@@ -16,7 +16,7 @@ class Shutoff():
                  switch.
     """
 
-    def __init__(self, pin="P9_41", gpio_mode, objects=[]):
+    def __init__(self, pin="P9_41", gpio_mode=(GPIO.RISING, GPIO.FALLING), objects=[]):
         """
             pin:       GPIO pin on which to wait for rising edge.
             gpio_mode: type of edge to trigger, reset
