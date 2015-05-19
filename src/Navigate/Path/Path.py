@@ -17,17 +17,18 @@ class Path():
               exercised.
     """
 
-    def __init__(self, drive, startFunc, stopFunc):
+    def __init__(self, drive):
         """
             drive:     Drive object to command.
-            startFunc: Function to call on path start.
-            stopFunc:  Function to call on path end.
 
         """
 
+        def dummy():
+            pass
+
         self.drive = drive
-        self.startFunc = startFunc
-        self.stopFunc = stopFunc
+        self.startFunc = dummy
+        self.stopFunc = dummy
         self.go = True
         self.lock = False
 
@@ -36,10 +37,12 @@ class Path():
     def __del__(self):
         self.stop()
 
-    def path(self, path_spec, delay=10):
+    def path(self, path_spec, startFunc, stopFunc, delay=10):
         """
             path: Implement thread to iterate through list of path commands.
 
+                startFunc: Function to call on path start.
+                stopFunc:  Function to call on path end.
                 path_spec: List of (direction, speed, turn, radius, time) tuples to specify the drive path.
                 delay:     Initial delay time (s) before starting path.
 
@@ -48,6 +51,8 @@ class Path():
             logging.warning("path: busy")
         else:
             self.path_spec = path_spec
+            self.startFunc = startFunc
+            self.stopFunc = stopFunc
             self.delay = delay
             self.lock = True
             t = threading.Thread(target=self.__handler)
@@ -82,5 +87,6 @@ class Path():
                 time.sleep(cmd[4])
 
         self.drive.stop()
+        self.stopFunc()
         self.lock = False
         logging.debug("path: finishing path")
