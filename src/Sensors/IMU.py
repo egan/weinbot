@@ -28,7 +28,7 @@ class IMU():
         self.go = True
 
         if (not self.imu.IMUInit()):
-            logging.debug("imu: initialization failed")
+            logging.error("imu: initialization failed")
             self.go = False
             return None
         else:

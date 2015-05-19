@@ -41,7 +41,7 @@ class Path():
 
         """
         if self.lock:
-            logging.debug("path: busy")
+            logging.warning("path: busy")
         else:
             self.path_spec = path_spec
             self.delay = delay
