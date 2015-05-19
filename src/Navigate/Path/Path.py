@@ -17,13 +17,17 @@ class Path():
               exercised.
     """
 
-    def __init__(self, drive):
+    def __init__(self, drive, startFunc, stopFunc):
         """
             drive:     Drive object to command.
+            startFunc: Function to call on path start.
+            stopFunc:  Function to call on path end.
 
         """
 
         self.drive = drive
+        self.startFunc = startFunc
+        self.stopFunc = stopFunc
         self.go = True
         self.lock = False
 
@@ -58,10 +62,12 @@ class Path():
         self.go=False
         # This call to drive.stop() is not extraneous, do not remove.
         self.drive.stop()
+        self.stopFunc()
 
     def __handler(self):
         time.sleep(self.delay)
         logging.debug("path: starting path")
+        self.startFunc()
         # Iterate through list of path commands.
         for cmd in self.path_spec:
             if self.go:
