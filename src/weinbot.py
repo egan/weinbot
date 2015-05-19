@@ -44,7 +44,9 @@ pump = Pump()
 
 # Instantiate control objects.
 path = Path(drive)
-shutoff = Shutoff(objects=[alarm, brushes, conveyor, drive, pump])
+objs = [alarm, brushes, conveyor, drive, pump]
+shutoff = Shutoff(objects=objs)
+sensing = Shutoff(pin="P9_3", objects=objs)
 
 # Instantiate sensor objects.
 imu = IMU()
