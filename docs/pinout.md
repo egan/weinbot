@@ -6,7 +6,7 @@ At this time, only `P9_13` (`TX`) is used.
 
 ## I²C
 Both exposed I²C buses are used, consuming pins `P9_{17..22, 24, 26}`.
-The communication with the IMU is performed over `I2C1` and communication with the LIDAR-Lite (planned) is performed over `I2C2`.
+The communication with the IMU and LIDAR-Lite is performed over bus `I2C1`.
 
 There is an error in the official pinmap with respect to the I²C pins on the rev.A BBB.
 The working pins are as follows for bus 1:
@@ -14,7 +14,7 @@ The working pins are as follows for bus 1:
 * `P9_20`: IMU data
 
 ## PWM
-The LIDAR servomechanism (planned) is controlled with PWM, consuming pin `P8_46`.
+The LIDAR servomechanism is controlled with PWM, consuming pin `P8_46`.
 
 ## Analog Input
 The BBB's ADC consumes pins `P9_{32..40}`.
