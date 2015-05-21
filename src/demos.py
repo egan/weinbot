@@ -46,7 +46,7 @@ def turn_rev(speed, turn, radius, time):
     return [("rev", speed, turn, radius, time)]
 
 ## Application path demos.
-def square(speed, turn, length, turn_radius=0.1, corners=1):
+def square(speed, turn, length, turn_radius=0.528, corners=1):
     """
         square: Drive straight and make 90 deg corners.
 
