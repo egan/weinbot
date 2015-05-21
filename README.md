@@ -17,6 +17,7 @@ In this way, our device will serve as a good foundation for potential further ro
 ### [Sabertooth Motor Driver Reference](docs/Sabertooth2x60.pdf)
 ### [WEINBot Pin Assignments](docs/pinout.md)
 ### [IMU Communication and Calibration](docs/imu.md)
+### [LIDAR-Lite Interface](docs/lidar.md)
 
 ## Operation and Demonstration
 ### [Deploying the WEINBot Software](docs/deploy.md)
