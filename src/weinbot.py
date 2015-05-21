@@ -112,23 +112,21 @@ wet = (alarm, brushes, conveyor)
 dry = (alarm, brushes, conveyor, pump)
 
 dispatcher = {
-        """
-            element0: -1 utility, 0 reset, 1 demonstrate
-            For demonstration commands:
-                element1: type
-                element2: parameter
-                element3: operation level
-
-            Implemented demos:
-                Straight forward at 1m/s for 3 seconds (none, brushes, brushes+pump).
-                Straight forward at 0.3m/s for 9 seconds (none, brushes, brushes+pump).
-                Left turn forward of r=10m at 0.3m/s for 9 seconds (none, brushes, brushes+pump).
-                Left turn forward of r=5m at 0.3m/s for 9 seconds (none, brushes, brushes+pump).
-                Left turn forward of r=2m at 0.3m/s for 3 seconds (none).
-                Left turn forward of r=0.9m at 45deg/s for 2 seconds (none).
-                Left square forward of l=4m at 0.6m/s, 1 corner (none, brushes, brushes+pump).
-                Left square forward of l=4m at 0.6m/s, 4 corners (none, brushes, brushes+pump).
-        """
+        # element0: -1 utility, 0 reset, 1 demonstrate
+        # For demonstration commands:
+        #     element1: type
+        #     element2: parameter
+        #     element3: operation level
+        #
+        # Implemented demos:
+        #     Straight forward at 1m/s for 3 seconds (none, brushes, brushes+pump).
+        #     Straight forward at 0.3m/s for 9 seconds (none, brushes, brushes+pump).
+        #     Left turn forward of r=10m at 0.3m/s for 9 seconds (none, brushes, brushes+pump).
+        #     Left turn forward of r=5m at 0.3m/s for 9 seconds (none, brushes, brushes+pump).
+        #     Left turn forward of r=2m at 0.3m/s for 3 seconds (none).
+        #     Left turn forward of r=0.9m at 45deg/s for 2 seconds (none).
+        #     Left square forward of l=4m at 0.6m/s, 1 corner (none, brushes, brushes+pump).
+        #     Left square forward of l=4m at 0.6m/s, 4 corners (none, brushes, brushes+pump).
         (-1, -1, -1, -1): reboot,
         (-1, 1, -1, 1): poweroff,
         (-1, 1, 1, 1): lambda: operation_start(wet),
