@@ -26,4 +26,16 @@ The UART3 (TX only) is special in that it cannot be loaded in this way; see [thi
 ### I2C Devices
 By default only I2C0 (not pinned out) is configured.
 To enable the others, add the `BB-I2C*` identifier to the cape manager enable argument.
-Upon rebooting, the I2C devices should show up in the output of `i2cdetect -l`.
+Upon rebooting, the I2C buses should show up in the output of `i2cdetect -l`.
+To poll I²C devices on a bus, do `i2cdetect -r -y $BUS` as root, where $BUS is the bus number.
+A memory map will print showing the available chip addresses.
+
+To write to an I²C device,
+
+	# i2cset -y $BUS $CHIP_ADDRESS $DATA_ADDRESS $VALUE
+
+To read from it,
+
+	# i2cget -y $BUS $CHIP_ADDRESS $DATA_ADDRESS $TYPE
+
+where `$TYPE` is `b` for byte or `w` for word.
