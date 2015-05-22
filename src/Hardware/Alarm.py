@@ -19,7 +19,10 @@ class Alarm():
     """
     # Alarm tone aliases. See page 5 of the documentation for a list of tones.
     aliases = {
-            "slow": 3
+            "water": 1,
+            "waste": 3,
+            "rev": 5,
+            "gen": 7
             }
 
     def __init__(self, pin_enable="P8_26", pins_selector=("P8_21", "P8_22", "P8_23", "P8_24", "P8_25")):
