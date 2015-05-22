@@ -167,8 +167,15 @@ if not run_from_ipython():
                 counter = 0
 
             if counter >= waste_samples:
-                # XXX: Waste is full, stop and alert.
-                pass
+                # Waste is full, stop and alert.
+                shutoff.shutdown(1)
+                alarm.setTone("waste")
+                alarm.start()
+                while True:
+                    # Wait till empty.
+                    if loadcell.read() < 0.25*waste_critical:
+                        alarm.stop()
+                        break
 
         command = hmi.read()
         if command in dispatcher.keys():
