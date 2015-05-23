@@ -17,6 +17,7 @@ This is intended to reduce the risk of inadvertently entering an incomplete or i
 ## Dynamic Tests
 ### Reactive
 * (-1, -1, 1, 1): Drive forward at 0.6m/s until an obstacle is detected 1.5m ahead of the LIDAR.
+
 ### Straight forward (fast, slow).
 * (1, 1, 1, -1): Drive forward at 1m/s for 3s.
 * (1, 1, 1, 0): Drive forward at 1m/s for 3s (with brushes, conveyor).
@@ -24,6 +25,7 @@ This is intended to reduce the risk of inadvertently entering an incomplete or i
 * (1, 1, 0, -1): Drive forward at 0.3m/s for 9s.
 * (1, 1, 0, 0): Drive forward at 0.3m/s for 9s (with brushes, conveyor).
 * (1, 1, 0, 1): Drive forward at 0.3m/s for 9s (with brushes, conveyor, pump).
+
 ### Circular arc (large--small).
 * (1, 1, -1, -1): Turn left at 0.3m/s forward around r=10m circle for 9s.
 * (1, 1, -1, 0): Turn left at 0.3m/s forward around r=10m circle for 9s (with brushes, conveyor).
@@ -33,6 +35,7 @@ This is intended to reduce the risk of inadvertently entering an incomplete or i
 * (1, 0, 1, 1): Turn left at 0.3m/s forward around r=5m circle for 9s (with brushes, conveyor, pump).
 * (1, 0, 0, -1): Turn left at 45°/s around r=2m circle for 3s.
 * (1, 0, 0, 0): Turn left at 0.3m/s around r=0.9m circle for 2s.
+
 ### Corners of a square (1, 4).
 * (1, -1, 0, -1): Drive a 4 meter square and 1 corner left at 0.6m/s.
 * (1, -1, 0, 0): Drive a 4 meter square and 1 corner left at 0.6m/s (with brushes, conveyor).
