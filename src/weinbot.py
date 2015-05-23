@@ -38,9 +38,11 @@ alarm = Alarm()
 brushes = Brushes()
 conveyor = Conveyor()
 drive = Drive()
+lidar = Lidar()
 loadcell = LoadCell()
 hmi = HMI()
 pump = Pump()
+servo = ServoSweep()
 
 # Instantiate control objects.
 path = Path(drive)
@@ -108,8 +110,8 @@ def dummy():
     pass
 
 # Command mapping.
-wet = (alarm, brushes, conveyor)
-dry = (alarm, brushes, conveyor, pump)
+dry = (alarm, brushes, conveyor)
+wet = (alarm, brushes, conveyor, pump)
 
 dispatcher = {
         # element0: -1 utility, 0 reset, 1 demonstrate
