@@ -38,7 +38,7 @@ class HMI():
         """
             switchState: Return balanced ternary switch state.
 
-                switch: Switch number.
+                switch: Tuple of switch pins (low, high).
 
         """
         if GPIO.input(switch[0]):
