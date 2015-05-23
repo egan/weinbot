@@ -1,6 +1,6 @@
 # HMI Functions
 The current human machine interface (HMI) is an array of four two-way toggle switches.
-The middle position is neutral, the up position is + and the bottom position is $-$.
+The middle position is neutral, the up position is + and the bottom position is -.
 The WEINBot is commanded by arranging the triad of these switches in a specific configuration and activating it with the lone (trigger) switch.
 Once activated, a new command cannot be entered until the command operation is completed (or canceled via emergency stop).
 Additionally, **the trigger switch must be set to neutral to release a software lock before entering a new configuration on the command triad**.
