@@ -68,11 +68,13 @@ class Path():
         # This call to drive.stop() is not extraneous, do not remove.
         self.drive.stop()
         self.stopFunc()
+        self.lock = False
 
     def __handler(self):
         time.sleep(self.delay)
         logging.debug("path: starting path")
         self.startFunc()
+        self.go = True
         # Iterate through list of path commands.
         for cmd in self.path_spec:
             if self.go:
