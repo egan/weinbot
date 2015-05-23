@@ -16,7 +16,7 @@ class Shutoff():
                  switch.
     """
 
-    def __init__(self, pin="P9_41", gpio_mode=(GPIO.RISING, GPIO.FALLING), objects=[]):
+    def __init__(self, pin, gpio_mode=(GPIO.RISING, GPIO.FALLING), objects=[]):
         """
             pin:       GPIO pin on which to wait for rising edge.
             gpio_mode: type of edge to trigger, reset
@@ -29,7 +29,7 @@ class Shutoff():
 
         # Set up GPIO interrupt on rising edge.
         GPIO.setup(pin, GPIO.IN)
-        GPIO.add_event_detect(pin, gpio_mode[0], callback=self.shutdown, bouncetime=500)
+        GPIO.add_event_detect(pin, gpio_mode[0], callback=self.shutdown, bouncetime=1000)
         return None
 
     def __del__(self):
@@ -51,5 +51,5 @@ class Shutoff():
 
         # Wait until switch is reset.
         logging.debug("shutoff: waiting for reset")
-        GPIO.wait_for_edge(self.pin, gpio_mode[1])
+        GPIO.wait_for_edge(self.pin, self.gpio_mode[1])
         return
