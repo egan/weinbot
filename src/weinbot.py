@@ -47,7 +47,7 @@ servo = ServoSweep()
 # Instantiate control objects.
 path = Path(drive)
 objs = [alarm, brushes, conveyor, drive, path, pump]
-shutoff = Shutoff(objects=objs)
+shutoff = Shutoff(pin="P9_42", objects=objs)
 sensing = Shutoff(pin="P9_3", objects=objs)
 
 # Instantiate sensor objects.
@@ -159,6 +159,8 @@ dispatcher = {
 ## Run.
 # Signal control software ready.
 alarm.strobe(1, (0.4, 0.2, 0.4, 0.2, 0.4))
+# Center servo.
+servo.center()
 
 # Mode selection loop (only in non-interactive mode).
 if not run_from_ipython():
