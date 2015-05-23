@@ -31,6 +31,7 @@ The WEINBot OS can be run in interactive mode in `ipython2` for debugging purpos
 It is very mildly engineered and is meant to be used as test code for the control modules.
 When run in headless mode from the launcher, it runs in an infinite input loop, reading commands from the [`HMI`](src/Hardware/HMI.py) module, which returns a balanced ternary tuple representing the state of the four single pole, double throw toggle switches.
 The `HMI` tuples are the keys in the `dispatcher` dictionary whose values are lambda functions to be called when the trigger is received.
+These demonstration functions are implemented in the [`demos`](src/demos.py) module.
 The mode operation supervisor can also check the state of the load cell to signal when the waste bucket requires emptying.
 
 ### Drive Modules
@@ -71,7 +72,7 @@ At this time there is no interface with the `Lidar` module, and a future one may
 
 #### [`Shutoff`](src/Hardware/Shutoff.py)
 This is an atomic module that registers a edge trigger interrupt on the emergency stop button detection circuit.
-Its initializer takes a list of control objects for which to call their `stop()` methods on when the trigger event is received.
+Its initializer takes a list of control objects for which to call their `stop()` methods when the trigger event is received.
 The interrupt callback is the `shutdown()` method, which can also be called freely to ensure all attributed hardware objects are stopped.
 
 ### Navigate Modules
