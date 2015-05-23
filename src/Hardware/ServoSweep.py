@@ -31,7 +31,7 @@ class ServoSweep():
         self.lock = False
         # XXX: These parameters should be determined from angle.
         self.duty_min = 3
-        self.duty_max = 14.5
+        self.duty_max = 12
         self.duty_span = self.duty_max - self.duty_min
         self.sweepInterval = 0.66
         # Start at minimum angle with 60Hz control signal.
@@ -64,6 +64,14 @@ class ServoSweep():
             time.sleep(self.sweepInterval)
             PWM.set_duty_cycle(self.pin, self.duty_min)
             time.sleep(self.sweepInterval)
+
+    def center(self):
+        """
+            center: Center the servomotor.
+
+        """
+        PWM.set_duty_cycle(self.pin, self.duty_min+(self.duty_max-self.duty_min)/2)
+        return
 
     def stop(self):
         """
