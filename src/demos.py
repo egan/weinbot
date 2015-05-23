@@ -1,4 +1,6 @@
 from __future__ import division
+import logging
+import threading
 
 ## Simple path demos for dynamic experiments.
 def straight_fwd(speed, time):
@@ -63,3 +65,28 @@ def square(speed, turn, length, turn_radius=0.528, corners=1):
     path = [line, corner]
 
     return path*corners
+
+## LIDAR Demo
+def __lidarStop(path, lidar, margin):
+    logging.debug("lidarStop: LIDAR polling started")
+    while True:
+        distance = lidar.read()
+        if distance < margin:
+            logging.debug("lidarStop: stopping path")
+            path.stop()
+            return
+
+def reactiveStop(path, lidar, speed, cutoffTime=10, margin=250):
+    """
+        reactiveStop: Drive straight until distance to obstacle achieved.
+
+            path:       Path object.
+            lidar:      LIDAR object.
+            speed:      Drive speed (m/s).
+            cutoffTime: Fail-safe cutoff time (s).
+            margin:     Distance to obstacle at which to stop (cm).
+
+    """
+    t = threading.Thread(target=__lidarStop, args=(path, lidar, margin))
+    t.start()
+    return [("fwd", speed, "no", None, cutoffTime)]
