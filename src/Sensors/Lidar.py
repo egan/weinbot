@@ -34,7 +34,9 @@ class Lidar():
         """
         # Perform DC stabilization cycle, signal acquisition and data
         # processing.
-        self.lidar.write8(0x00, 0x4)
+        s = self.lidar.write8(0x00, 0x4)
+        if s == -1:
+            return -1
         # Read 2 bytes data, reversed (cm).
         time.sleep(0.02)
         return self.lidar.reverseByteOrder(self.lidar.readU16(0x8F))
