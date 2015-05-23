@@ -21,3 +21,4 @@ In this way, our device will serve as a good foundation for potential further ro
 
 ## Operation and Demonstration
 ### [Deploying the WEINBot Software](docs/deploy.md)
+### [HMI Functions](docs/demos.md)
