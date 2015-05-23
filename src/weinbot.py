@@ -133,6 +133,7 @@ dispatcher = {
         (-1, 1, -1, 1): poweroff,
         (-1, 1, 1, 1): lambda: operation_start(wet),
         (-1, 0, 0, 0): lambda: operation_stop(wet),
+        (-1, -1, 1, 1): lambda: path.path(demos.reactiveStop(path, lidar, 0.6, margin=150), lambda: dummy, lambda: dummy)
         (1, 1, 1, -1): lambda: path.path(demos.straight_fwd(1, 3), lambda: dummy, lambda: dummy),
         (1, 1, 1, 0): lambda: path.path(demos.straight_fwd(1, 3), lambda: operation_start(dry), lambda: operation_stop(dry)),
         (1, 1, 1, 1): lambda: path.path(demos.straight_fwd(1, 3), lambda: operation_start(wet), lambda: operation_stop(wet)),
