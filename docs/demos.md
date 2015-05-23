@@ -26,7 +26,7 @@ This is intended to reduce the risk of inadvertently entering an incomplete or i
 * (1, 1, 0, 0): Drive forward at 0.3m/s for 9s (with brushes, conveyor).
 * (1, 1, 0, 1): Drive forward at 0.3m/s for 9s (with brushes, conveyor, pump).
 
-### Circular arc (large--small).
+### Circular arc (large–small).
 * (1, 1, -1, -1): Turn left at 0.3m/s forward around r=10m circle for 9s.
 * (1, 1, -1, 0): Turn left at 0.3m/s forward around r=10m circle for 9s (with brushes, conveyor).
 * (1, 1, -1, 1): Turn left at 0.3m/s forward around r=10m circle for 9s (with brushes, conveyor, pump).
