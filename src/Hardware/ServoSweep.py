@@ -79,5 +79,6 @@ class ServoSweep():
 
         """
         self.lock = False
+        self.center()
         logging.debug("servo: stopping sweep")
         return
