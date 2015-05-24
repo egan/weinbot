@@ -40,10 +40,14 @@ class Shutoff():
 
         """
         if GPIO.input(self.pin):
-            return
-        else:
-            self.shutdown(1)
+            self.shutdown()
             logging.debug("shutoff: waiting for reset")
+            while GPIO.input(self.pin):
+                pass
+        else:
+            logging.debug("shutoff: switch reset")
+
+        return
 
     def shutdown(self):
         """
@@ -56,3 +60,4 @@ class Shutoff():
             obj.stop()
 
         return
+
