@@ -34,7 +34,7 @@ class Brushes():
         # Set up serial.
         self.saber = serial.Serial()
         self.saber.baudrate = 9600
-        self.saber.port = '/dev/%s' % (self.port)
+        self.saber.port = '/dev/%s' % (port)
         self.saber.open()
         self.isOpen = self.saber.isOpen()
 
