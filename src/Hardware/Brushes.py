@@ -55,7 +55,7 @@ class Brushes():
         """
         logging.debug("brushes: started")
         GPIO.output(self.pin, GPIO.HIGH)
-        t = thread.Thread(target=self.__ramp)
+        t = threading.Thread(target=self.__ramp)
         t.start()
         return
 
