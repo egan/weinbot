@@ -36,7 +36,7 @@ class Sabertooth():
             "ramp": 0x10
             }
 
-    def __init__(self, port="/dev/ttyO1", address=128):
+    def __init__(self, port="ttyO4", address=128):
         """
             port:        Teletypewriter device to connect to.
             address:     Address of controller to send commands to
