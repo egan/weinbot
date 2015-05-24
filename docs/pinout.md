@@ -2,11 +2,13 @@
 
 ## UART
 The motor driver is controlled over `UART4`, consuming pins `P9_{11, 13}`.
-At this time, only `P9_13` (`TX`) is used.
+Only `P9_13` (`TX`) is used.
+
+The brush motor driver is controlled over `UART1`, consuming pins `P9_{24, 26}`.
+Only `P9_24` is used.
 
 ## I²C
-Both exposed I²C buses are used, consuming pins `P9_{17..22, 24, 26}`.
-The communication with the IMU and LIDAR-Lite is performed over bus `I2C1`.
+The communication with the IMU and LIDAR-Lite is performed over bus `I2C1`, consuming pins `P9_{17..22}`.
 
 There is an error in the official pinmap with respect to the I²C pins on the rev.A BBB.
 The working pins are as follows for bus 1:
