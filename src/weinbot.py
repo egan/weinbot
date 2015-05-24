@@ -75,7 +75,7 @@ def poweroff():
         poweroff: poweroff the BBB.
 
     """
-    shutoff.shutdown(1)
+    shutoff.shutdown()
     subprocess.call("poweroff")
 
 def reboot():
@@ -173,7 +173,7 @@ if not run_from_ipython():
 
             if counter >= waste_samples:
                 # Waste is full, stop and alert.
-                shutoff.shutdown(1)
+                shutoff.shutdown()
                 alarm.setTone("waste")
                 alarm.start()
                 while True:

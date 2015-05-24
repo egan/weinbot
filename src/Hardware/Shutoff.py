@@ -34,18 +34,20 @@ class Shutoff():
         self.shutdown()
         return
 
-    def __handler(self):
+    def __handler(self, channel):
+        """
+                channel: required argument for callback, unused.
+
+        """
         if GPIO.input(self.pin):
             return
         else:
             self.shutdown(1)
             logging.debug("shutoff: waiting for reset")
 
-    def shutdown(self, channel):
+    def shutdown(self):
         """
             shutdown: Call stop() methods for shutoff objects.
-
-                channel: required argument for callback, unused.
 
         """
         # Shut down Hardware objects.
