@@ -71,9 +71,9 @@ Sweeping is accomplished by setting specific maximum and minimum duty cycles at 
 At this time there is no interface with the `Lidar` module, and a future one may require more sophisticated control of the servomotor position to ensure synchronicity.
 
 #### [`Shutoff`](src/Hardware/Shutoff.py)
-This is an atomic module that registers a edge trigger interrupt on the emergency stop button detection circuit.
+This is an atomic module that registers a rising edge trigger interrupt on the any digital input, for e.g. the emergency stop button or sensing edges.
 Its initializer takes a list of control objects for which to call their `stop()` methods when the trigger event is received.
-The interrupt callback is the `shutdown()` method, which can also be called freely to ensure all attributed hardware objects are stopped.
+The interrupt callback calls the `shutdown()` method until the switch is reset, which can also be called freely to ensure all attributed hardware objects are stopped.
 
 ### Navigate Modules
 The navigate modules are meant to include various algorithms for path planning and reactive navigation.
