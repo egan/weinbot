@@ -40,10 +40,13 @@ class Shutoff():
 
         """
         if GPIO.input(self.pin):
-            self.shutdown()
             logging.debug("shutoff: waiting for reset")
             while GPIO.input(self.pin):
-                pass
+                # XXX: It would be nice if this could be called just once, but
+                # it seems the callback is threaded so a blocking loop here
+                # does not prevent the execution of other operations from the
+                # MOS.
+                self.shutdown()
         else:
             logging.debug("shutoff: switch reset")
 
