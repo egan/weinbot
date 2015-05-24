@@ -19,7 +19,7 @@ class Brushes():
                  brush motor relay via GPIO and simple serial.
     """
 
-    def __init__(self, pin="P8_11", port="/dev/ttyO1", rampTime=2):
+    def __init__(self, pin="P8_11", port="ttyO1", rampTime=2):
         """
             pin:      BBB GPIO pin to control brush motor relay.
             port:     Teletypewriter device to connect to.
@@ -32,9 +32,10 @@ class Brushes():
         GPIO.setup(pin, GPIO.OUT)
 
         # Set up serial.
+        self.port = port
         self.saber = serial.Serial()
         self.saber.baudrate = 9600
-        self.saber.port = '/dev/%s' % (port)
+        self.saber.port = '/dev/%s' % (self.port)
         self.saber.open()
         self.isOpen = self.saber.isOpen()
 
