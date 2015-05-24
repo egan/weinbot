@@ -53,7 +53,7 @@ Tone selection via the `setTone()` method can be accomplished by numeric or stri
 Strobing via the `strobe()` method spawns a threaded handler taking a list of toggle times for the alarm.
 
 #### [`Brushes`](src/Hardware/Brushes.py)
-This is an atomic module consisting simply of on/off control of the brush motor relay.
+This is an atomic module consisting of on/off control of the brush motor relay, as well as an interface over simplified serial to the brush motor driver to ramp their speed using a timed thread.
 
 #### [`Conveyor`](src/Hardware/Conveyor.py)
 This is an atomic module consisting simply of on/off control of the conveyor motor relay.
