@@ -62,16 +62,16 @@ class Brushes():
     def __ramp(self):
         tstep = self.rampTime/3
         logging.debug("brushes: 25%")
-        self.saber.write(95)
+        self.saber.write(chr(95))
         time.sleep(tstep)
         logging.debug("brushes: 50%")
-        self.saber.write(63)
+        self.saber.write(chr(63))
         time.sleep(tstep)
         logging.debug("brushes: 75%")
-        self.saber.write(31)
+        self.saber.write(chr(31))
         time.sleep(tstep)
         logging.debug("brushes: 100%")
-        self.saber.write(0)
+        self.saber.write(chr(0))
         return
 
     def stop(self):
@@ -80,5 +80,5 @@ class Brushes():
 
         """
         logging.debug("brushes: stopped")
-        self.saber.write(127)
+        self.saber.write(chr(127))
         GPIO.output(self.pin, GPIO.LOW)
