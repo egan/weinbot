@@ -28,14 +28,13 @@ The load cell and flow sensor (planned) each require a single `AIN` pin:
 ## GPIO
 ### Digital Input
 
-* `P9_41`: shutoff switch detection.
+* `P9_42`: shutoff switch detection.
 * `P8_{3, 4}`: sensing edge switch detection.
 * `P8_{37..44}`: HMI SPDT switch detection.
 
 
 ### Digital Output
 
-* `P9_42`: motor driver deadman's switch.
 * `P8_{11..13}`: continuous duty motor control relays.
 	* `P8_11`: brush motors relay
 	* `P8_12`: conveyor motor relay
