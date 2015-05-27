@@ -8,6 +8,7 @@
 
 import Adafruit_BBIO.GPIO as GPIO
 import logging
+import time
 
 class Shutoff():
     """
@@ -41,6 +42,8 @@ class Shutoff():
         """
         if GPIO.input(self.pin):
             logging.debug("shutoff: waiting for reset")
+            # Wait out bounce time.
+            time.sleep(0.2)
             while GPIO.input(self.pin):
                 # XXX: It would be nice if this could be called just once, but
                 # it seems the callback is threaded so a blocking loop here
