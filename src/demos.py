@@ -1,5 +1,6 @@
 from __future__ import division
 import logging
+import time
 import threading
 
 ## Simple path demos for dynamic experiments.
@@ -75,6 +76,7 @@ def __lidarStop(path, lidar, margin):
             logging.debug("lidarStop: stopping path")
             path.stop()
             return
+        time.sleep(0.02)
 
 def reactiveStop(path, lidar, speed, cutoffTime=10, margin=250):
     """
